@@ -10,6 +10,7 @@ RUN \
     usermod -u 1000 nginx && \
     groupmod -g 1000 nginx
 
+EXPOSE 443
 WORKDIR /var/www/html/
 
 # Copy the default configuration provided by Magento
