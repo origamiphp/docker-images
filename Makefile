@@ -6,6 +6,7 @@
 
 build: ## Executes the "build" target on all custom images.
 	docker build --tag ajardin/magento2-elasticsearch:latest magento2/elasticsearch/
+	docker build --tag ajardin/magento2-mysql:latest magento2/mysql/
 	docker build --tag ajardin/magento2-nginx:latest magento2/nginx/
 
 	docker build --tag ajardin/magento2-php:default magento2/php/
@@ -18,6 +19,7 @@ build: ## Executes the "build" target on all custom images.
 
 publish: ## Executes the "publish" target on all custom images.
 	docker push ajardin/magento2-elasticsearch:latest
+	docker push ajardin/magento2-mysql:latest
 	docker push ajardin/magento2-nginx:latest
 
 	docker push ajardin/magento2-php:default
