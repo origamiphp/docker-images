@@ -1,0 +1,167 @@
+name: 'Magento 2 - Build and Publish'
+
+on: [push]
+
+jobs:
+  elasticsearch:
+    name: 'Elasticsearch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-elasticsearch:latest magento2/elasticsearch/
+
+      - name: 'Sign in to Docker Hub'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        uses: actions/docker/login@master
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-elasticsearch:latest
+        if: github.ref == 'refs/heads/master'
+
+  mysql:
+    name: 'MySQL'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-mysql:latest magento2/mysql/
+
+      - name: 'Sign in to Docker Hub'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        uses: actions/docker/login@master
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-mysql:latest
+        if: github.ref == 'refs/heads/master'
+
+  nginx:
+    name: 'Nginx'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-nginx:latest magento2/nginx/
+
+      - name: 'Sign in to Docker Hub'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        uses: actions/docker/login@master
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-nginx:latest
+        if: github.ref == 'refs/heads/master'
+
+  php:
+    name: 'PHP'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image (default)'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-php:default magento2/php/
+
+      - name: 'Build the Docker image (Blackfire)'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-php:blackfire magento2/php/blackfire
+
+      - name: 'Build the Docker image (Xdebug)'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-php:xdebug magento2/php/xdebug
+
+      - name: 'Tag the "default" image as "latest"'
+        uses: actions/docker/cli@master
+        with:
+          args: tag ajardin/magento2-php:default ajardin/magento2-php:latest
+
+      - name: 'Sign in to Docker Hub'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        uses: actions/docker/login@master
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image (default)'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-php:default
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image (Blackfire)'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-php:blackfire
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image (Xdebug)'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-php:xdebug
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image (latest)'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-php:latest
+        if: github.ref == 'refs/heads/master'
+
+  synchro:
+    name: 'Synchronization'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: build --tag ajardin/magento2-synchro:latest magento2/synchro/
+
+      - name: 'Sign in to Docker Hub'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        uses: actions/docker/login@master
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        uses: actions/docker/cli@master
+        with:
+          args: push ajardin/magento2-synchro:latest
+        if: github.ref == 'refs/heads/master'
