@@ -2,6 +2,7 @@ FROM php:7.2-fpm-alpine
 
 # Install Magento requirements
 RUN \
+    apk update && \
     apk add --no-cache \
         autoconf \
         automake \
@@ -60,9 +61,6 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     curl -sS https://files.magerun.net/n98-magerun2.phar --output /usr/local/bin/magerun2 && \
     chmod +x /usr/local/bin/magerun2
-
-# Automatically start the SSH agent when a new session is created
-RUN echo 'eval $(ssh-agent) && ssh-add' >> /home/www-data/.profile
 
 # Assign a new UID/GID to avoid using a generated value
 RUN \

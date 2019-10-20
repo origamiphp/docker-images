@@ -6,7 +6,6 @@ Docker Compose environment, thus on local environments and **not on production p
 There are only Magento 2 images for now, more will come soon... :wink:
 
 ## Magento 2
-The associated environment is: https://github.com/EmakinaFR/docker-magento2.
 
 ### ElasticSearch
 An image based on `docker.elastic.co/elasticsearch/elasticsearch:5.6.16` with two additional plugins:
