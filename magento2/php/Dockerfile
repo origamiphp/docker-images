@@ -67,6 +67,11 @@ RUN \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
+# Allow "www-data" to use the shared SSH agent
+RUN \
+    mkdir -p /run/host-services/ && \
+    chown www-data:www-data /run/host-services/
+
 # Install custom entrypoint
 COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint
 RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
