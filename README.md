@@ -1,9 +1,15 @@
 # My Docker Images [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains all my custom Docker images. These images are designed to be used with the associated
-Docker Compose environment, thus on local environments and **not on production platforms**.
+This repository contains all my custom Docker images.
 
-There are only Magento 2 images for now, more will come soon... :wink:
+Images related to a technology (e.g. Magento 2) are designed to be used with the associated Docker Compose environment,
+thus on local environments and **not on production platforms**.
+
+## Common
+
+### Humbug Box
+An image based on `php:cli-alpine` with the [humbug/box](https://github.com/humbug/box) bundler and
+[Composer](https://getcomposer.org/). 
 
 ## Magento 2
 

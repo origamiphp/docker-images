@@ -1,0 +1,26 @@
+name: 'Common - Build and Publish'
+
+on: [push]
+
+jobs:
+  box:
+    name: 'Box'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        run: docker build --tag ajardin/humbug-box:latest common/humbug-box/
+
+      - name: 'Sign in to Docker Hub'
+        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        run: docker push ajardin/humbug-box:latest
+        if: github.ref == 'refs/heads/master'
