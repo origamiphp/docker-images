@@ -1,6 +1,5 @@
 FROM phpstan/phpstan:latest
 
-## Install PHPStan extensions globally
 RUN \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
         phpunit/phpunit \
