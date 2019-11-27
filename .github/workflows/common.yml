@@ -24,3 +24,25 @@ jobs:
       - name: 'Publish the Docker image'
         run: docker push ajardin/humbug-box:latest
         if: github.ref == 'refs/heads/master'
+
+  phpstan:
+    name: 'PHPStan'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        run: docker build --tag ajardin/phpstan:latest common/phpstan/
+
+      - name: 'Sign in to Docker Hub'
+        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        run: docker push ajardin/phpstan:latest
+        if: github.ref == 'refs/heads/master'

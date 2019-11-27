@@ -11,6 +11,9 @@ thus on local environments and **not on production platforms**.
 An image based on `php:cli-alpine` with the [humbug/box](https://github.com/humbug/box) bundler and
 [Composer](https://getcomposer.org/). 
 
+### PHPStan
+An image based on `phpstan/phpstan:latest` with some additional extensions like PHPUnit, Symfony and Prophecy.
+
 ## Magento 2
 
 ### ElasticSearch
