@@ -47,7 +47,6 @@ jobs:
         run: docker push ajardin/phpcsfixer:latest
         if: github.ref == 'refs/heads/master'
 
-
   phpstan:
     name: 'PHPStan'
     runs-on: ubuntu-latest
@@ -68,4 +67,26 @@ jobs:
 
       - name: 'Publish the Docker image'
         run: docker push ajardin/phpstan:latest
+        if: github.ref == 'refs/heads/master'
+
+  security-checker:
+    name: 'Security Checker'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build the Docker image'
+        run: docker build --tag ajardin/security-checker:latest common/security-checker/
+
+      - name: 'Sign in to Docker Hub'
+        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        if: github.ref == 'refs/heads/master'
+
+      - name: 'Publish the Docker image'
+        run: docker push ajardin/security-checker:latest
         if: github.ref == 'refs/heads/master'
