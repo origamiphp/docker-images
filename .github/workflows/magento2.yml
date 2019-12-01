@@ -1,6 +1,9 @@
 name: 'Magento 2 - Build and Publish'
 
-on: [push]
+on:
+  push:
+    branches: ['**']
+    paths: ['magento2/**']
 
 jobs:
   elasticsearch:

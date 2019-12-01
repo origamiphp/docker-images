@@ -1,6 +1,9 @@
 name: 'Common - Build and Publish'
 
-on: [push]
+on:
+  push:
+    branches: ['**']
+    paths: ['common/**']
 
 jobs:
   box:
