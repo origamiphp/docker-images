@@ -11,12 +11,17 @@ thus on local environments and **not on production platforms**.
 An image based on `php:cli-alpine` with the [humbug/box](https://github.com/humbug/box) bundler and
 [Composer](https://getcomposer.org/). 
 
+### PHPCPD
+An image based on `php:cli-alpine` with the [PHPCPD](https://github.com/sebastianbergmann/phpcpd) tool and
+[Composer](https://getcomposer.org/).
+
 ### PHP-CS-Fixer
 An image based on `php:cli-alpine` with the [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) tool and
 [Composer](https://getcomposer.org/). 
 
 ### PHPStan
-An image based on `phpstan/phpstan:latest` with some additional extensions like PHPUnit, Symfony and Prophecy.
+An image based on `php:cli-alpine` with the [PHPStan](https://github.com/phpstan/phpstan) tool with some additional
+extensions (PHPUnit, Symfony and Prophecy) and [Composer](https://getcomposer.org/).
 
 ## Magento 2
 
