@@ -1,5 +1,10 @@
 FROM php:cli-alpine
 
+LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
+LABEL org.opencontainers.image.title="Image with the Box bundler for PHP."
+LABEL org.opencontainers.image.description=""
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/humbug-box/Dockerfile"
+
 # Install system requirements
 RUN \
     apk update && \

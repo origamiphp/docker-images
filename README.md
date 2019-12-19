@@ -2,43 +2,16 @@
 
 This repository contains all my custom Docker images.
 
-Images related to a technology (e.g. Magento 2) are designed to be used with the associated Docker Compose environment,
-thus on local environments and **not on production platforms**.
+Images related to a technology (i.e. Magento 2 or Symfony) are designed to be used with the associated Docker Compose
+environment, thus on local environments and **not on production platforms**.
 
-## Common
+## Index
+* [Common images](/common)
+* [Magento 2 images](/magento2)
+* [Symfony images](/symfony)
 
-### Humbug Box
-An image based on `php:cli-alpine` with the [humbug/box](https://github.com/humbug/box) bundler and
-[Composer](https://getcomposer.org/). 
-
-### PHPCPD
-An image based on `php:cli-alpine` with the [PHPCPD](https://github.com/sebastianbergmann/phpcpd) tool and
-[Composer](https://getcomposer.org/).
-
-### PHP-CS-Fixer
-An image based on `php:cli-alpine` with the [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) tool and
-[Composer](https://getcomposer.org/). 
-
-### PHPStan
-An image based on `php:cli-alpine` with the [PHPStan](https://github.com/phpstan/phpstan) tool with some additional
-extensions (PHPUnit, Symfony and Prophecy) and [Composer](https://getcomposer.org/).
-
-## Magento 2
-
-### ElasticSearch
-An image based on `docker.elastic.co/elasticsearch/elasticsearch:5.6.16` with two additional plugins:
-`analysis-icu` and `analysis-phonetic`. These modules are required if you want
-to use [ElasticSuite](https://github.com/Smile-SA/elasticsuite).
-
-### Nginx
-An image based on `nginx:1.15-alpine` with HTTPS support, default Magento configuration, and custom domains.
-
-### PHP
-An image based on `php:7.2-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and several improvements
-when using the container with a console. This is the `default` tag, but there are two others tags:
-* the `blackfire` tag is an image based on `default` with the [Blackfire extension](https://blackfire.io/docs/introduction), 
-* the `xdebug` tag is an image based on `default` with the [Xdebug extension](https://xdebug.org/).
-
-### Synchro
-An imaged based on `alpine:latest` with a new user and a new group, which share the same UID and GID than the ones
-in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen](https://mutagen.io/).
+## Build
+These images are automatically built when a commit is added to the `master` branch using
+[GitHub Actions](/.github/workflows) and are publicly available in [Docker Hub](https://hub.docker.com/u/ajardin). We
+are currently not able to display the association between the final image and the Dockerfile directly in Docker Hub
+because **multiple images are present in a single GitHub repository**. 

@@ -1,16 +1,17 @@
 FROM php:7.2-fpm-alpine
 
+LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
+LABEL org.opencontainers.image.title="Local PHP image for a Magento 2 application."
+LABEL org.opencontainers.image.description=""
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/php/Dockerfile"
+
 # Install Magento requirements
 RUN \
     apk update && \
     apk add --no-cache \
-        autoconf \
-        automake \
         freetype-dev \
-        g++ \
         git \
         icu-dev \
-        icu-libs \
         libjpeg-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
@@ -18,7 +19,6 @@ RUN \
         libxml2-utils \
         libxslt-dev \
         libwebp-dev \
-        make \
         openssh-client \
         patch \
         perl \
