@@ -20,3 +20,7 @@ An image based on `php:cli-alpine` with the
 ### Synchro
 An imaged based on `alpine:latest` with a new user and a new group, which share the same UID and GID than the ones
 in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen](https://mutagen.io/).
+
+### Yarn
+An image based on `alpine:latest` with [Yarn](https://github.com/sensiolabs/security-checker) the dependency manager
+for JavaScript.
