@@ -38,6 +38,19 @@ RUN \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
 
+# Install the PHP probe for Blackfire
+RUN \
+    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.32.0/blackfire-php-alpine_amd64-php-74.so \
+        --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    docker-php-ext-enable blackfire
+
+## Install Composer globally
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer config --global repos.packagist composer https://repo.packagist.org
+ENV PATH "${PATH}:/root/.composer/vendor/bin"
+
 # Assign a new UID/GID to avoid using a generated value
 RUN \
     usermod -u 1000 www-data && \
@@ -47,10 +60,6 @@ RUN \
 RUN \
     mkdir -p /run/host-services/ && \
     chown www-data:www-data /run/host-services/
-
-## Install Composer globally
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Install custom entrypoint
 COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint

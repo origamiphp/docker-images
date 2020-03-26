@@ -3,7 +3,7 @@ name: 'Magento 2 - Build and Publish'
 on:
   push:
     branches: ['**']
-    paths: ['magento2/**']
+    paths: ['.github/workflows/magento2.yml', 'magento2/**']
 
 jobs:
   elasticsearch:
@@ -14,19 +14,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/magento2-elasticsearch:latest magento2/elasticsearch/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/magento2-elasticsearch:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-elasticsearch
+          path: magento2/elasticsearch/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   mysql:
     name: 'MySQL'
@@ -36,19 +33,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/magento2-mysql:latest magento2/mysql/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/magento2-mysql:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-mysql
+          path: magento2/mysql/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   nginx:
     name: 'Nginx'
@@ -58,19 +52,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/magento2-nginx:latest magento2/nginx/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/magento2-nginx:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-nginx
+          path: magento2/nginx/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   php:
     name: 'PHP'
@@ -80,37 +71,13 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image (default)'
-        run: docker build --tag ajardin/magento2-php:default magento2/php/
-
-      - name: 'Build the Docker image (Blackfire)'
-        run: docker build --tag ajardin/magento2-php:blackfire magento2/php/blackfire
-
-      - name: 'Build the Docker image (Xdebug)'
-        run: docker build --tag ajardin/magento2-php:xdebug magento2/php/xdebug
-
-      - name: 'Tag the "default" image as "latest"'
-        run: docker tag ajardin/magento2-php:default ajardin/magento2-php:latest
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (default)'
-        run: docker push ajardin/magento2-php:default
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (Blackfire)'
-        run: docker push ajardin/magento2-php:blackfire
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (Xdebug)'
-        run: docker push ajardin/magento2-php:xdebug
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (latest)'
-        run: docker push ajardin/magento2-php:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-php
+          path: magento2/php/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}

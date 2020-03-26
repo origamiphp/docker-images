@@ -3,30 +3,27 @@ name: 'Common - Build and Publish'
 on:
   push:
     branches: ['**']
-    paths: ['common/**']
+    paths: ['.github/workflows/common.yml', 'common/**']
 
 jobs:
   box:
-    name: 'Box'
+    name: 'Humbug Box'
     runs-on: ubuntu-latest
 
     steps:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/humbug-box:latest common/humbug-box/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/humbug-box:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/humbug-box
+          path: common/humbug-box
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   phpcpd:
     name: 'PHP Copy/Paste Detector'
@@ -36,19 +33,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/phpcpd:latest common/phpcpd/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/phpcpd:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/phpcpd
+          path: common/phpcpd/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   phpcsfixer:
     name: 'PHP-CS-Fixer'
@@ -58,19 +52,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/phpcsfixer:latest common/phpcsfixer/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/phpcsfixer:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/phpcsfixer
+          path: common/phpcsfixer/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   phpstan:
     name: 'PHPStan'
@@ -80,19 +71,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/phpstan:latest common/phpstan/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/phpstan:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/phpstan
+          path: common/phpstan/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   security-checker:
     name: 'Security Checker'
@@ -102,19 +90,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/security-checker:latest common/security-checker/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/security-checker:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/security-checker
+          path: common/security-checker/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   synchro:
     name: 'Synchronization'
@@ -124,19 +109,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/synchro:latest common/synchro/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/synchro:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/synchro
+          path: common/synchro/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   yarn:
     name: 'Yarn'
@@ -146,16 +128,13 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/yarn:latest common/yarn/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/yarn:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/yarn
+          path: common/yarn/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
