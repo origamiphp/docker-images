@@ -1,8 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -euo pipefail
 
-if [[ $(php -r "echo (int) extension_loaded('blackfire');") -eq 1 ]]; then
-    cat << CONFIG >> "${PHP_INI_DIR}"/conf.d/docker-php-ext-blackfire.ini
+cat << CONFIG >> "${PHP_INI_DIR}"/conf.d/docker-php-ext-blackfire.ini
 
 blackfire.agent_socket=tcp://blackfire:${BLACKFIRE_PORT}
 blackfire.agent_timeout=5
@@ -11,7 +10,6 @@ blackfire.log_level=${BLACKFIRE_LOG_LEVEL}
 blackfire.server_id=${BLACKFIRE_SERVER_ID}
 blackfire.server_token=${BLACKFIRE_SERVER_TOKEN}
 CONFIG
-fi
 
 # Ensure that the document root is writable by the "www-data" user
 chown www-data:www-data /var/www/html

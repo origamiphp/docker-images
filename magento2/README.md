@@ -13,7 +13,5 @@ to `256M`.
 An image based on `nginx:1.15-alpine` with HTTPS support, default Magento configuration, and custom domains.
 
 ### PHP
-An image based on `php:7.2-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and several improvements
-when using the container with a console. This is the `default` tag, but there are two others tags:
-* the `blackfire` tag is an image based on `default` with the [Blackfire extension](https://blackfire.io/docs/introduction), 
-* the `xdebug` tag is an image based on `default` with the [Xdebug extension](https://xdebug.org/).
+An image based on `php:7.2-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and the
+[Blackfire extension](https://blackfire.io/docs/introduction).

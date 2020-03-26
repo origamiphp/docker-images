@@ -3,7 +3,7 @@ name: 'Symfony - Build and Publish'
 on:
   push:
     branches: ['**']
-    paths: ['symfony/**']
+    paths: ['.github/workflows/symfony.yml', 'symfony/**']
 
 jobs:
   nginx:
@@ -14,19 +14,16 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image'
-        run: docker build --tag ajardin/symfony-nginx:latest symfony/nginx/
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image'
-        run: docker push ajardin/symfony-nginx:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/symfony-nginx
+          path: symfony/nginx/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
 
   php:
     name: 'PHP'
@@ -36,37 +33,13 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build the Docker image (default)'
-        run: docker build --tag ajardin/symfony-php:default symfony/php/
-
-      - name: 'Build the Docker image (Blackfire)'
-        run: docker build --tag ajardin/symfony-php:blackfire symfony/php/blackfire
-
-      - name: 'Build the Docker image (Xdebug)'
-        run: docker build --tag ajardin/symfony-php:xdebug symfony/php/xdebug
-
-      - name: 'Tag the "default" image as "latest"'
-        run: docker tag ajardin/symfony-php:default ajardin/symfony-php:latest
-
-      - name: 'Sign in to Docker Hub'
-        run: docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (default)'
-        run: docker push ajardin/symfony-php:default
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (Blackfire)'
-        run: docker push ajardin/symfony-php:blackfire
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (Xdebug)'
-        run: docker push ajardin/symfony-php:xdebug
-        if: github.ref == 'refs/heads/master'
-
-      - name: 'Publish the Docker image (latest)'
-        run: docker push ajardin/symfony-php:latest
-        if: github.ref == 'refs/heads/master'
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/symfony-php
+          path: symfony/php/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
