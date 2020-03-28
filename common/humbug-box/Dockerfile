@@ -5,19 +5,15 @@ LABEL org.opencontainers.image.title="Image with the Box bundler for PHP."
 LABEL org.opencontainers.image.description=""
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/humbug-box/Dockerfile"
 
-# Install system requirements
-RUN \
-    apk update && \
-    apk add --no-cache git && \
-    apk add --no-cache --virtual .build-deps openssl-dev && \
-    curl -L https://github.com/humbug/box/releases/latest/download/box.phar -o /usr/bin/box && \
-    chmod +x /usr/bin/box && \
-    apk del .build-deps
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 ## Install Composer globally
 ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-ENV PATH "${PATH}:/root/.composer/vendor/bin"
+RUN \
+    apk update && apk add --no-cache git && \
+    composer global config minimum-stability dev && \
+    composer global require humbug/box:dev-master --no-suggest --optimize-autoloader --classmap-authoritative
+ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 WORKDIR /app
 ENTRYPOINT [ "box" ]
