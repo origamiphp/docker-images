@@ -13,5 +13,5 @@ to `256M`.
 An image based on `nginx:1.15-alpine` with HTTPS support, default Magento configuration, and custom domains.
 
 ### PHP
-An image based on `php:7.2-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and the
+Images based on `php:7.2-fpm-alpine` or `php:7.3-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and the
 [Blackfire extension](https://blackfire.io/docs/introduction).

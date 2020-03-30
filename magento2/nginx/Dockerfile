@@ -1,7 +1,7 @@
 FROM nginx:1.15-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="Local Nginx image for a Magento 2 application."
+LABEL org.opencontainers.image.title="Nginx image for a Magento 2 application."
 LABEL org.opencontainers.image.description=""
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/nginx/Dockerfile"
 

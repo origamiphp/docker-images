@@ -1,9 +1,9 @@
 FROM php:7.4-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="Local PHP image for a Symfony application."
+LABEL org.opencontainers.image.title="PHP 7.4 image for a Symfony application."
 LABEL org.opencontainers.image.description=""
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/7.4/Dockerfile"
 
 # Install Symfony requirements
 RUN \
@@ -28,7 +28,6 @@ RUN \
 		$PHPIZE_DEPS \
 		postgresql-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
-    docker-php-ext-configure zip --with-zip && \
     docker-php-ext-install -j$(nproc) \
         intl \
         gd \
@@ -61,8 +60,12 @@ RUN \
     mkdir -p /run/host-services/ && \
     chown www-data:www-data /run/host-services/
 
+## Install Composer globally
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 # Install custom entrypoint
-COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint
+COPY --from=ajardin/blackfire-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
 RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
 CMD ["php-fpm"]
 ENTRYPOINT ["docker-custom-entrypoint"]
