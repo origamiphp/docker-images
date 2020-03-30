@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -euo pipefail
 
 if [[ ! -f /etc/nginx/ssl/custom.pem || ! -f /etc/nginx/ssl/custom.key ]]; then
