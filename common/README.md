@@ -1,26 +1,50 @@
-## Common images
+Common images
+=============
 
-### Humbug Box
-An image based on `php:cli-alpine` with the [humbug/box](https://github.com/humbug/box) bundler.
+Blackfire entrypoint
+--------------------
+An image based on `scratch` with a custom entrypoint to be use with PHP images for [Magento][1] and [Symfony][2].
 
-### PHPCPD
-An image based on `php:cli-alpine` with the [PHPCPD](https://github.com/sebastianbergmann/phpcpd) tool.
+Nginx
+-----
+An image based on `nginx:alpine` with HTTPS support and custom domains.
 
-### PHP-CS-Fixer
-An image based on `php:cli-alpine` with the [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) tool.
+Humbug Box
+----------
+An image based on `php:cli-alpine` with the [humbug/box][3] bundler.
 
-### PHPStan
-An image based on `php:cli-alpine` with the [PHPStan](https://github.com/phpstan/phpstan) tool with some additional
-extensions (PHPUnit, Symfony and Prophecy).
+PHPCPD
+------
+An image based on `php:cli-alpine` with the [PHPCPD][4] tool.
 
-### Security
-An image based on `php:cli-alpine` with the
-[SensioLabs Security Checker](https://github.com/sensiolabs/security-checker).
+PHP-CS-Fixer
+------------
+An image based on `php:cli-alpine` with the [PHP-CS-Fixer][5] tool.
 
-### Synchro
+PHPStan
+-------
+An image based on `php:cli-alpine` with the [PHPStan][6] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
+
+Security
+--------
+An image based on `php:cli-alpine` with the [SensioLabs Security Checker][7].
+
+Synchro
+-------
 An imaged based on `alpine:latest` with a new user and a new group, which share the same UID and GID than the ones
-in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen](https://mutagen.io/).
+in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen][8].
 
-### Yarn
-An image based on `alpine:latest` with [Yarn](https://github.com/sensiolabs/security-checker) the dependency manager
-for JavaScript.
+Yarn
+----
+An image based on `alpine:latest` with [Yarn][9] the dependency manager for JavaScript.
+
+<!-- Resources -->
+[1]: /magento2
+[2]: /symfony
+[3]: https://github.com/humbug/box
+[4]: https://github.com/sebastianbergmann/phpcpd
+[5]: https://github.com/FriendsOfPHP/PHP-CS-Fixer
+[6]: https://github.com/phpstan/phpstan
+[7]: https://github.com/sensiolabs/security-checker
+[8]: https://mutagen.io/
+[9]: https://github.com/sensiolabs/security-checker

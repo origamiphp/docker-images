@@ -1,9 +1,9 @@
 FROM nginx:alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="Nginx image for a Symfony application."
+LABEL org.opencontainers.image.title="Nginx image with HTTPS support."
 LABEL org.opencontainers.image.description=""
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/nginx/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/nginx/Dockerfile"
 
 # Install Nginx requirements
 RUN \
