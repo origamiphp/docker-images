@@ -1,7 +1,7 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.3-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="Local PHP image for a Magento 2 application."
+LABEL org.opencontainers.image.title="PHP 7.3 image for a Magento 2 application."
 LABEL org.opencontainers.image.description=""
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/php/Dockerfile"
 
@@ -51,7 +51,7 @@ RUN \
 
 # Install the PHP probe for Blackfire
 RUN \
-    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.32.0/blackfire-php-alpine_amd64-php-72.so \
+    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.32.0/blackfire-php-alpine_amd64-php-73.so \
         --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 
@@ -79,7 +79,7 @@ RUN \
     chown www-data:www-data /run/host-services/
 
 # Install custom entrypoint
-COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint
+COPY --from=ajardin/blackfire-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
 RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
 CMD ["php-fpm"]
 ENTRYPOINT ["docker-custom-entrypoint"]
