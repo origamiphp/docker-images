@@ -19,6 +19,7 @@ RUN \
         libxml2-utils \
         libxslt-dev \
         libwebp-dev \
+        libzip-dev \
         openssh-client \
         patch \
         perl \
