@@ -1,5 +1,6 @@
 Common images
 =============
+![Common - Build and Publish](https://github.com/ajardin/docker-images/workflows/Common%20-%20Build%20and%20Publish/badge.svg)
 
 Blackfire entrypoint
 --------------------

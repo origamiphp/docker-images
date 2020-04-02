@@ -1,5 +1,6 @@
 Symfony images
 ==============
+![Symfony - Build and Publish](https://github.com/ajardin/docker-images/workflows/Symfony%20-%20Build%20and%20Publish/badge.svg)
 
 PHP
 ---
