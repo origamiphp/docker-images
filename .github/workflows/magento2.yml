@@ -3,7 +3,7 @@ name: 'Magento 2 - Build and Publish'
 on:
   push:
     branches: ['**']
-    paths: ['.github/workflows/magento2.yml', 'magento2/**']
+    paths: ['.github/workflows/magento2.yml', 'common/blackfire-entrypoint/**', 'common/nginx/**', 'magento2/**']
 
 jobs:
   elasticsearch:

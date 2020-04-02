@@ -3,7 +3,7 @@ name: 'Symfony - Build and Publish'
 on:
   push:
     branches: ['**']
-    paths: ['.github/workflows/symfony.yml', 'symfony/**']
+    paths: ['.github/workflows/symfony.yml', 'common/blackfire-entrypoint/**', 'common/nginx/**', 'symfony/**']
 
 jobs:
   php:
