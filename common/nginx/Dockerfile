@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/
 # Install Nginx requirements
 RUN \
     apk update && \
-    apk add --no-cache openssl shadow && \
+    apk add --no-cache bash openssl shadow && \
     mkdir -p /etc/nginx/ssl
 
 # Assign a new UID/GID to avoid using a generated value
