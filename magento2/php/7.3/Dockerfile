@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/
 RUN \
     apk update && \
     apk add --no-cache \
+        bash \
         freetype-dev \
         git \
         icu-dev \
