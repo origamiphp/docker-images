@@ -55,11 +55,6 @@ RUN \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
-# Allow "www-data" to use the shared SSH agent
-RUN \
-    mkdir -p /run/host-services/ && \
-    chown www-data:www-data /run/host-services/
-
 ## Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
