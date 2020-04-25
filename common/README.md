@@ -26,18 +26,22 @@ PHPStan
 -------
 An image based on `php:cli-alpine` with the [PHPStan][6] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
 
+Psalm
+-------
+An image based on `php:cli-alpine` with the [Psalm][7] tool with some additional extensions (PHPUni and Symfony).
+
 Security
 --------
-An image based on `php:cli-alpine` with the [SensioLabs Security Checker][7].
+An image based on `php:cli-alpine` with the [SensioLabs Security Checker][8].
 
 Synchro
 -------
 An imaged based on `alpine:latest` with a new user and a new group, which share the same UID and GID than the ones
-in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen][8].
+in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen][9].
 
 Yarn
 ----
-An image based on `alpine:latest` with [Yarn][9] the dependency manager for JavaScript.
+An image based on `alpine:latest` with [Yarn][10] the dependency manager for JavaScript.
 
 <!-- Resources -->
 [1]: /magento2
@@ -46,6 +50,7 @@ An image based on `alpine:latest` with [Yarn][9] the dependency manager for Java
 [4]: https://github.com/sebastianbergmann/phpcpd
 [5]: https://github.com/FriendsOfPHP/PHP-CS-Fixer
 [6]: https://github.com/phpstan/phpstan
-[7]: https://github.com/sensiolabs/security-checker
-[8]: https://mutagen.io/
-[9]: https://github.com/sensiolabs/security-checker
+[7]: https://github.com/vimeo/psalm
+[8]: https://github.com/sensiolabs/security-checker
+[9]: https://mutagen.io/
+[10]: https://yarnpkg.com/
