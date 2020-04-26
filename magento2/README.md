@@ -1,6 +1,5 @@
 Magento 2 images
 ================
-![Magento 2 - Build and Publish](https://github.com/ajardin/docker-images/workflows/Magento%202%20-%20Build%20and%20Publish/badge.svg)
 
 Elasticsearch
 -------------
