@@ -1,9 +1,11 @@
-name: 'Common - Build and Publish'
+name: 'Common images'
 
 on:
   push:
     branches: ['**']
-    paths: ['.github/workflows/common.yml', 'common/**']
+    paths:
+      - '.github/workflows/common.yml'
+      - 'common/**'
 
 jobs:
   blackfire-entrypoint:
