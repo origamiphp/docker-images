@@ -43,13 +43,6 @@ RUN \
         --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 
-## Install Composer globally
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    composer config --global repos.packagist composer https://repo.packagist.org
-ENV PATH "${PATH}:/root/.composer/vendor/bin"
-
 # Assign a new UID/GID to avoid using a generated value
 RUN \
     usermod -u 1000 www-data && \
@@ -58,6 +51,7 @@ RUN \
 ## Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_MEMORY_LIMIT -1
 
 # Install custom entrypoint
 COPY --from=ajardin/blackfire-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
