@@ -1,4 +1,4 @@
-name: 'Symfony images'
+name: 'Symfony/Sylius images'
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - '.github/workflows/symfony.yml'
       - 'common/blackfire-entrypoint/**'
       - 'common/nginx/**'
+      - 'sylius/**'
       - 'symfony/**'
 
 jobs:
@@ -18,7 +19,7 @@ jobs:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image (7.3)'
+      - name: 'Build & Publish the Docker image (Symfony 7.3)'
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -29,13 +30,35 @@ jobs:
           tags: 7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.4)'
+      - name: 'Build & Publish the Docker image (Sylius 7.3)'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/sylius-php
+          path: sylius/php/7.3
+          always_pull: true
+          tags: 7.3
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+      - name: 'Build & Publish the Docker image (Symfony 7.4)'
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ajardin/symfony-php
           path: symfony/php/7.4
+          always_pull: true
+          tags: 7.4, latest
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+      - name: 'Build & Publish the Docker image (Sylius 7.4)'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/sylius-php
+          path: sylius/php/7.4
           always_pull: true
           tags: 7.4, latest
           push: ${{ github.ref == 'refs/heads/master' }}

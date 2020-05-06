@@ -1,9 +1,8 @@
 <h1 align="center">Welcome to my Docker images 👋</h1>
 <p align="center">
     <img src="https://github.com/ajardin/docker-images/workflows/Common%20images/badge.svg" alt="Common images">
-    <img src="https://github.com/ajardin/docker-images/workflows/Magento%202%20images/badge.svg" alt="Magento 2 images"/>    
-    <img src="https://github.com/ajardin/docker-images/workflows/Sylius%20images/badge.svg" alt="Symfony images"/>
-    <img src="https://github.com/ajardin/docker-images/workflows/Symfony%20images/badge.svg" alt="Symfony images"/>
+    <img src="https://github.com/ajardin/docker-images/workflows/Magento%202%20images/badge.svg" alt="Magento 2 images"/>
+    <img src="https://github.com/ajardin/docker-images/workflows/Symfony/Sylius%20images/badge.svg" alt="Symfony/Sylius images"/>
 </p>
 
 Index
