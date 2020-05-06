@@ -33,7 +33,8 @@ RUN \
         gd \
         opcache \
         pdo_mysql \
-        pdo_pgsql && \
+        pdo_pgsql \
+        zip && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
 
