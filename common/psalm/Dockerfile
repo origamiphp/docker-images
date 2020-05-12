@@ -10,9 +10,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN \
     apk add --no-cache git && \
+    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        vimeo/psalm \
-        psalm/plugin-phpunit psalm/plugin-symfony
+        vimeo/psalm:dev-master \
+        psalm/plugin-phpunit:dev-master psalm/plugin-symfony:dev-master
 ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
 WORKDIR /app

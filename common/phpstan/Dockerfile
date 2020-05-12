@@ -10,10 +10,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN \
     apk add --no-cache git && \
+    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        phpunit/phpunit \
-        phpstan/phpstan \
-        phpstan/phpstan-phpunit phpstan/phpstan-symfony jangregor/phpstan-prophecy
+        phpunit/phpunit:dev-master \
+        phpstan/phpstan:dev-master \
+        phpstan/phpstan-phpunit:dev-master phpstan/phpstan-symfony:dev-master jangregor/phpstan-prophecy:dev-master
 ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
 WORKDIR /app
