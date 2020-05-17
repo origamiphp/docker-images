@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/common.yml'
       - 'common/**'
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   blackfire-entrypoint:
