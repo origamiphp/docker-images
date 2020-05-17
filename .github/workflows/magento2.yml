@@ -8,6 +8,8 @@ on:
       - 'common/blackfire-entrypoint/**'
       - 'common/nginx/**'
       - 'magento2/**'
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   elasticsearch:
