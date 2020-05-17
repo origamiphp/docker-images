@@ -1,0 +1,31 @@
+name: 'Elasticsearch for Magento 2 image'
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '.github/workflows/magento2-elasticsearch.yml'
+      - 'magento2/elasticsearch/**'
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+
+  elasticsearch:
+    name: 'Main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Prepare the build context'
+        uses: actions/checkout@v1
+
+      - name: 'Build & Publish the Docker image'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-elasticsearch
+          path: magento2/elasticsearch/
+          always_pull: true
+          tags: latest
+          push: ${{ github.ref == 'refs/heads/master' }}
