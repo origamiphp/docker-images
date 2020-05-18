@@ -1,4 +1,4 @@
-name: 'Copy/Paste Detector image'
+name: 'Copy-Paste Detector image'
 
 on:
   push:
