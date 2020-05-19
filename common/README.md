@@ -82,6 +82,23 @@ An image based on `php:cli-alpine` with the [PHPStan][7] tool with some addition
 docker run --interactive --volume=$(pwd):/app  ajardin/phpstan
 ```
 
+```yaml
+# Example of PHPStan configuration (phpstan.neon) to place at the project root.
+
+includes:
+  - /root/.composer/vendor/phpstan/phpstan-phpunit/extension.neon
+  - /root/.composer/vendor/phpstan/phpstan-symfony/extension.neon
+  - /root/.composer/vendor/jangregor/phpstan-prophecy/extension.neon
+
+parameters:
+  level: max
+  paths:
+    - '%currentWorkingDirectory%/src'
+    - '%currentWorkingDirectory%/tests'
+  symfony:
+    container_xml_path: '%currentWorkingDirectory%/var/cache/dev/App_KernelDevDebugContainer.xml'
+```
+
 Psalm image
 -----------
 ![Psalm status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Psalm%20image?style=for-the-badge)
