@@ -62,11 +62,6 @@ RUN \
     curl -sS https://files.magerun.net/n98-magerun2.phar --output /usr/local/bin/magerun2 && \
     chmod +x /usr/local/bin/magerun2
 
-# Assign a new UID/GID to avoid using a generated value
-RUN \
-    usermod -u 1000 www-data && \
-    groupmod -g 1000 www-data
-
 ## Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1

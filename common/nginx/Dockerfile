@@ -11,11 +11,6 @@ RUN \
     apk add --no-cache bash openssl shadow && \
     mkdir -p /etc/nginx/ssl
 
-# Assign a new UID/GID to avoid using a generated value
-RUN \
-    usermod -u 1000 nginx && \
-    groupmod -g 1000 nginx
-
 EXPOSE 443
 WORKDIR /var/www/html/
 

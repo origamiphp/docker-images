@@ -44,11 +44,6 @@ RUN \
         --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 
-# Assign a new UID/GID to avoid using a generated value
-RUN \
-    usermod -u 1000 www-data && \
-    groupmod -g 1000 www-data
-
 ## Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
