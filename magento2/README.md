@@ -6,8 +6,9 @@ Elasticsearch for Magento 2 image
 ![Elasticsearch for Magento 2 status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Elasticsearch%20for%20Magento%202%20image?style=for-the-badge)
 ![Elasticsearch for Magento 2 pulls](https://img.shields.io/docker/pulls/ajardin/magento2-elasticsearch?style=for-the-badge)
 
-An image based on `docker.elastic.co/elasticsearch/elasticsearch:5.6.16` with two additional plugins:
-`analysis-icu` and `analysis-phonetic`. These modules are required if you want to use [ElasticSuite][1].
+An image based on `docker.elastic.co/elasticsearch/elasticsearch:6.8.9` or
+`docker.elastic.co/elasticsearch/elasticsearch:7.6.2` with two additional plugins: `analysis-icu` and
+`analysis-phonetic`. These modules are required if you want to use [ElasticSuite][1].
 
 ```yaml
 services:
@@ -79,8 +80,8 @@ PHP images
 ![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/magento2-php?style=for-the-badge)
 
-Images based on `php:7.2-fpm-alpine` or `php:7.3-fpm-alpine` with Magento 2 prequisites, Composer, n98-magerun2, and the
-[Blackfire extension][2].
+Images based on `php:7.2-fpm-alpine`, `php:7.3-fpm-alpine`, or `php:7.4-fpm-alpine` with Magento 2 prequisites,
+Composer, n98-magerun2, and the [Blackfire extension][2].
 
 ```yaml
 services:
