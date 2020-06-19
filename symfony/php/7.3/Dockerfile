@@ -40,7 +40,7 @@ RUN \
 
 # Install the PHP probe for Blackfire
 RUN \
-    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.32.0/blackfire-php-alpine_amd64-php-73.so \
+    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.36.0/blackfire-php-alpine_amd64-php-73.so \
         --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 

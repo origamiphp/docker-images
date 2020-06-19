@@ -6,7 +6,8 @@ PHP images
 ![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/symfony-php?style=for-the-badge)
 
-Images based on `php:7.3-fpm-alpine` or `php:7.4-fpm-alpine` with Symfony prequisites, Composer, and the [Blackfire extension][1].
+Images based on `php:7.1-fpm-alpine`, `php:7.2-fpm-alpine`, `php:7.3-fpm-alpine`, or `php:7.4-fpm-alpine` with Symfony
+prequisites, Composer, and the [Blackfire extension][1].
 
 ```yaml
 services:

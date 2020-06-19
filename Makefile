@@ -21,11 +21,13 @@ common: ## Builds all "common" images
 .PHONY: common
 
 magento2: ## Builds all "magento2" images
-	docker build --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch
+	docker build --tag=ajardin/magento2-elasticsearch:6.8 --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch/6.8
+	docker build --tag=ajardin/magento2-elasticsearch:7.6 magento2/elasticsearch/7.6
 	docker build --tag=ajardin/magento2-mysql:latest magento2/mysql
 	docker build --tag=ajardin/magento2-nginx:latest magento2/nginx
 	docker build --tag=ajardin/magento2-php:7.2 magento2/php/7.2
 	docker build --tag=ajardin/magento2-php:7.3 --tag=ajardin/magento2-php:latest magento2/php/7.3
+	docker build --tag=ajardin/magento2-php:7.4 magento2/php/7.4
 .PHONY: magento2
 
 sylius: ## Builds all "sylius" images
@@ -34,6 +36,8 @@ sylius: ## Builds all "sylius" images
 .PHONY: sylius
 
 symfony: ## Builds all "symfony" images
+	docker build --tag=ajardin/symfony-php:7.1 symfony/php/7.1
+	docker build --tag=ajardin/symfony-php:7.2 symfony/php/7.2
 	docker build --tag=ajardin/symfony-php:7.3 symfony/php/7.3
 	docker build --tag=ajardin/symfony-php:7.4 --tag=ajardin/symfony-php:latest symfony/php/7.4
 .PHONY: symfony

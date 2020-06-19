@@ -63,6 +63,17 @@ jobs:
           tags: 7.3, latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
+      - name: 'Build & Publish the Docker image (7.4)'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-php
+          path: magento2/php/7.4
+          always_pull: true
+          tags: 7.4
+          push: ${{ github.ref == 'refs/heads/master' }}
+
   php_symfony:
     name: 'Symfony'
     runs-on: ubuntu-latest
@@ -71,6 +82,28 @@ jobs:
     steps:
       - name: 'Prepare the build context'
         uses: actions/checkout@v1
+
+      - name: 'Build & Publish the Docker image (Symfony 7.1)'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/symfony-php
+          path: symfony/php/7.1
+          always_pull: true
+          tags: 7.1
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+      - name: 'Build & Publish the Docker image (Symfony 7.2)'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/symfony-php
+          path: symfony/php/7.2
+          always_pull: true
+          tags: 7.2
+          push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: 'Build & Publish the Docker image (Symfony 7.3)'
         uses: docker/build-push-action@v1

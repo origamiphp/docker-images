@@ -1,9 +1,9 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="PHP 7.3 image for a Magento 2 application."
+LABEL org.opencontainers.image.title="PHP 7.4 image for a Magento 2 application."
 LABEL org.opencontainers.image.description=""
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/php/7.3/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/php/7.4/Dockerfile"
 
 # Install Magento requirements
 RUN \
@@ -28,11 +28,7 @@ RUN \
         ssmtp \
         yarn && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
-    docker-php-ext-configure gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-webp-dir=/usr/include/ && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install -j$(nproc) \
         bcmath \
         intl \
@@ -52,7 +48,7 @@ RUN \
 
 # Install the PHP probe for Blackfire
 RUN \
-    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.36.0/blackfire-php-alpine_amd64-php-73.so \
+    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.36.0/blackfire-php-alpine_amd64-php-74.so \
         --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 
