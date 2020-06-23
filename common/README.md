@@ -54,7 +54,7 @@ Copy-Paste Detector image
 An image based on `php:cli-alpine` with the [PHPCPD][5] tool.
 ```bash
 # Executes the copy/paste analysis.
-docker run --interactive --volume=$(pwd):/app ajardin/phpcpd
+docker run --interactive --volume=$(pwd):/app ajardin/phpcpd --fuzzy src tests
 ```
 
 PHP Coding Standards Fixer image
@@ -65,10 +65,18 @@ PHP Coding Standards Fixer image
 An image based on `php:cli-alpine` with the [PHP-CS-Fixer][6] tool.
 ```bash
 # Executes the code style analysis with dry-run mode.
-docker run --interactive --volume=$(pwd):/app ajardin/phpcsfixer
+docker run --interactive --volume=$(pwd):/app ajardin/phpcsfixer fix --dry-run --verbose
+```
 
-# Executes the code style analysis with fixing mode.
-docker run --interactive --volume=$(pwd):/app ajardin/phpcsfixer fix --verbose
+PhpMetrics image
+----------------
+![PhpMetrics status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PhpMetrics%20image?style=for-the-badge)
+![PHP Coding Standards Fixer pulls](https://img.shields.io/docker/pulls/ajardin/phpmetrics?style=for-the-badge)
+
+An image based on `php:cli-alpine` with the [PhpMetrics][7] tool.
+```bash
+# Executes the code style analysis with dry-run mode.
+docker run --interactive --volume=$(pwd):/app ajardin/phpmetrics src,tests --report-html="./report" 
 ```
 
 PHPStan image
@@ -76,10 +84,10 @@ PHPStan image
 ![PHPStan status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHPStan%20image?style=for-the-badge)
 ![PHPStan pulls](https://img.shields.io/docker/pulls/ajardin/phpstan?style=for-the-badge)
 
-An image based on `php:cli-alpine` with the [PHPStan][7] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
+An image based on `php:cli-alpine` with the [PHPStan][8] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
 ```bash
-# Executes a static analysis on all PHP files (phpstan analyze --verbose).
-docker run --interactive --volume=$(pwd):/app  ajardin/phpstan
+# Executes a static analysis on all PHP files.
+docker run --interactive --volume=$(pwd):/app ajardin/phpstan analyze src tests --verbose
 ```
 
 ```yaml
@@ -104,10 +112,10 @@ Psalm image
 ![Psalm status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Psalm%20image?style=for-the-badge)
 ![Psalm pulls](https://img.shields.io/docker/pulls/ajardin/psalm?style=for-the-badge)
 
-An image based on `php:cli-alpine` with the [Psalm][8] tool with some additional extensions (PHPUnit and Symfony).
+An image based on `php:cli-alpine` with the [Psalm][9] tool with some additional extensions (PHPUnit and Symfony).
 ```bash
-# Executes a static analysis on all PHP files (psalm --show-info=true --find-dead-code).
-docker run --interactive --volume=$(pwd):/app ajardin/psalm
+# Executes a static analysis on all PHP files.
+docker run --interactive --volume=$(pwd):/app ajardin/psalm --show-info=true --find-dead-code
 ```
 
 Security Checker image
@@ -115,10 +123,10 @@ Security Checker image
 ![Security Checker status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Security%20Checker%20image?style=for-the-badge)
 ![Security Checker pulls](https://img.shields.io/docker/pulls/ajardin/security-checker?style=for-the-badge)
 
-An image based on `php:cli-alpine` with the [SensioLabs Security Checker][9].
+An image based on `php:cli-alpine` with the [SensioLabs Security Checker][10].
 ```bash
 # Executes a security audit on all PHP dependencies.
-docker run --interactive --volume=$(pwd):/app ajardin/security-checker
+docker run --interactive --volume=$(pwd):/app ajardin/security-checker security:check ./composer.lock
 ```
 
 Synchronization image
@@ -127,7 +135,7 @@ Synchronization image
 ![Synchronization pulls](https://img.shields.io/docker/pulls/ajardin/synchro?style=for-the-badge)
 
 An imaged based on `alpine:latest` with a new user and a new group, which share the same UID and GID than the ones
-in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen][10].
+in `php` and `nginx` images, to make the files synchronization easier when using [Mutagen][11].
 ```yaml
 services:
 # [...]
@@ -146,7 +154,7 @@ Yarn image
 ![Yarn status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Yarn%20image?style=for-the-badge)
 ![Yarn pulls](https://img.shields.io/docker/pulls/ajardin/yarn?style=for-the-badge)
 
-An image based on `alpine:latest` with [Yarn][11] the dependency manager for JavaScript.
+An image based on `alpine:latest` with [Yarn][12] the dependency manager for JavaScript.
 ```bash
 # Upgrades JavaScript packages.
 docker run --interactive --volume=$(pwd):/app ajardin/yarn:latest sh -c "yarn upgrade"
@@ -159,8 +167,9 @@ docker run --interactive --volume=$(pwd):/app ajardin/yarn:latest sh -c "yarn up
 [4]: https://github.com/humbug/box
 [5]: https://github.com/sebastianbergmann/phpcpd
 [6]: https://github.com/FriendsOfPHP/PHP-CS-Fixer
-[7]: https://github.com/phpstan/phpstan
-[8]: https://github.com/vimeo/psalm
-[9]: https://github.com/sensiolabs/security-checker
-[10]: https://mutagen.io/
-[11]: https://yarnpkg.com/
+[7]: https://github.com/phpmetrics/PhpMetrics
+[8]: https://github.com/phpstan/phpstan
+[9]: https://github.com/vimeo/psalm
+[10]: https://github.com/sensiolabs/security-checker
+[11]: https://mutagen.io/
+[12]: https://yarnpkg.com/
