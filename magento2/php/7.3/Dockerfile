@@ -2,7 +2,7 @@ FROM php:7.3-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="PHP 7.3 image for a Magento 2 application."
-LABEL org.opencontainers.image.description=""
+LABEL org.opencontainers.image.description="https://magento.com/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/magento2/php/7.3/Dockerfile"
 
 # Install Magento requirements

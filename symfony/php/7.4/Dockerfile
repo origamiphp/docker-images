@@ -2,7 +2,7 @@ FROM php:7.4-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="PHP 7.4 image for a Symfony application."
-LABEL org.opencontainers.image.description=""
+LABEL org.opencontainers.image.description="https://symfony.com/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/7.4/Dockerfile"
 
 # Install Symfony requirements
