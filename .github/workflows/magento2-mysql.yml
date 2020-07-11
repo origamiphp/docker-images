@@ -8,7 +8,8 @@ on:
       - "magento2/mysql/**"
   schedule:
     - cron: "0 0 * * *"
-
+  workflow_dispatch:
+    inputs:
 
 jobs:
 
