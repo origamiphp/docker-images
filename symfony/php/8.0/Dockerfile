@@ -1,9 +1,9 @@
-FROM php:7.3-fpm-alpine
+FROM php:8.0-rc-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="PHP 7.3 image for a Symfony application."
+LABEL org.opencontainers.image.title="PHP 8.0 image for a Symfony application."
 LABEL org.opencontainers.image.description="https://symfony.com/"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/7.3/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/8.0/Dockerfile"
 
 # Install Symfony requirements
 RUN \
@@ -27,7 +27,7 @@ RUN \
     apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
 		postgresql-dev && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install -j$(nproc) \
         intl \
         gd \
@@ -39,12 +39,12 @@ RUN \
     apk del .build-deps
 
 # Install the Blackfire PHP probe
-RUN \
-    blackfire_probe_version=1.34.3 && \
-    php_version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-    curl https://packages.blackfire.io/binaries/blackfire-php/${blackfire_probe_version}/blackfire-php-alpine_amd64-php-${php_version}.so \
-        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-    docker-php-ext-enable blackfire
+#RUN \
+#    blackfire_probe_version=1.34.3 && \
+#    php_version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
+#    curl https://packages.blackfire.io/binaries/blackfire-php/${blackfire_probe_version}/blackfire-php-alpine_amd64-php-${php_version}.so \
+#        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+#    docker-php-ext-enable blackfire
 
 # Assign a new UID/GID to avoid using a generated value
 RUN \

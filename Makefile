@@ -34,6 +34,7 @@ magento2: ## Builds all "magento2" images
 sylius: ## Builds all "sylius" images
 	docker build --tag=ajardin/sylius-php:7.3 sylius/php/7.3
 	docker build --tag=ajardin/sylius-php:7.4 --tag=ajardin/sylius-php:latest sylius/php/7.4
+	docker build --tag=ajardin/sylius-php:8.0 sylius/php/8.0
 .PHONY: sylius
 
 symfony: ## Builds all "symfony" images
@@ -41,6 +42,7 @@ symfony: ## Builds all "symfony" images
 	docker build --tag=ajardin/symfony-php:7.2 symfony/php/7.2
 	docker build --tag=ajardin/symfony-php:7.3 symfony/php/7.3
 	docker build --tag=ajardin/symfony-php:7.4 --tag=ajardin/symfony-php:latest symfony/php/7.4
+	docker build --tag=ajardin/symfony-php:8.0 symfony/php/8.0
 .PHONY: symfony
 
 help:
