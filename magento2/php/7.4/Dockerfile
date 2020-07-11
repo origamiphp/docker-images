@@ -64,7 +64,7 @@ RUN \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
-## Install Composer globally
+# Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
