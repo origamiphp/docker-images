@@ -1,25 +1,26 @@
-name: 'Elasticsearch for Magento 2 image'
+name: "Elasticsearch for Magento 2 image"
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
     paths:
-      - '.github/workflows/magento2-elasticsearch.yml'
-      - 'magento2/elasticsearch/**'
+      - ".github/workflows/magento2-elasticsearch.yml"
+      - "magento2/elasticsearch/**"
   schedule:
     - cron: "0 0 * * *"
+
 
 jobs:
 
   elasticsearch:
-    name: 'Main'
+    name: "Main"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image (Elasticsearch 6.8)'
+      - name: "Build & Publish the Docker image (Elasticsearch 6.8)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -27,10 +28,10 @@ jobs:
           repository: ajardin/magento2-elasticsearch
           path: magento2/elasticsearch/6.8
           always_pull: true
-          tags: 6.8, latest
+          tags: "6.8,latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (Elasticsearch 7.6)'
+      - name: "Build & Publish the Docker image (Elasticsearch 7.6)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -38,5 +39,5 @@ jobs:
           repository: ajardin/magento2-elasticsearch
           path: magento2/elasticsearch/7.6
           always_pull: true
-          tags: 7.6
+          tags: "7.6"
           push: ${{ github.ref == 'refs/heads/master' }}
