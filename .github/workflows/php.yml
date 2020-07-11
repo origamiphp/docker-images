@@ -1,27 +1,28 @@
-name: 'PHP images'
+name: "PHP images"
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
     paths:
-      - '.github/workflows/php.yml'
-      - 'common/blackfire-entrypoint/**'
-      - 'magento2/php/**'
-      - 'sylius/php/**'
-      - 'symfony/php/**'
+      - ".github/workflows/php.yml"
+      - "common/blackfire-entrypoint/**"
+      - "magento2/php/**"
+      - "sylius/php/**"
+      - "symfony/php/**"
   schedule:
     - cron: "0 0 * * *"
 
+
 jobs:
   blackfire_entrypoint:
-    name: 'Blackfire Entrypoint'
+    name: "Blackfire Entrypoint"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image'
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -29,19 +30,19 @@ jobs:
           repository: ajardin/blackfire-entrypoint
           path: common/blackfire-entrypoint
           always_pull: true
-          tags: latest
+          tags: "latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_magento:
-    name: 'Magento'
+    name: "Magento"
     runs-on: ubuntu-latest
     needs: blackfire_entrypoint
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image (7.2 for Magento 2)'
+      - name: "Build & Publish the Docker image (7.2 for Magento 2)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -49,10 +50,10 @@ jobs:
           repository: ajardin/magento2-php
           path: magento2/php/7.2
           always_pull: true
-          tags: 7.2
+          tags: "7.2"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.3 for Magento 2)'
+      - name: "Build & Publish the Docker image (7.3 for Magento 2)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -60,10 +61,10 @@ jobs:
           repository: ajardin/magento2-php
           path: magento2/php/7.3
           always_pull: true
-          tags: 7.3, latest
+          tags: "7.3,latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.4 for Magento 2)'
+      - name: "Build & Publish the Docker image (7.4 for Magento 2)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -71,19 +72,19 @@ jobs:
           repository: ajardin/magento2-php
           path: magento2/php/7.4
           always_pull: true
-          tags: 7.4
+          tags: "7.4"
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_symfony:
-    name: 'Symfony'
+    name: "Symfony"
     runs-on: ubuntu-latest
     needs: blackfire_entrypoint
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image (7.1 for Symfony)'
+      - name: "Build & Publish the Docker image (7.1 for Symfony)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -91,10 +92,10 @@ jobs:
           repository: ajardin/symfony-php
           path: symfony/php/7.1
           always_pull: true
-          tags: 7.1
+          tags: "7.1"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.2 for Symfony)'
+      - name: "Build & Publish the Docker image (7.2 for Symfony)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -102,10 +103,10 @@ jobs:
           repository: ajardin/symfony-php
           path: symfony/php/7.2
           always_pull: true
-          tags: 7.2
+          tags: "7.2"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.3 for Symfony)'
+      - name: "Build & Publish the Docker image (7.3 for Symfony)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -113,10 +114,10 @@ jobs:
           repository: ajardin/symfony-php
           path: symfony/php/7.3
           always_pull: true
-          tags: 7.3
+          tags: "7.3"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.4 for Symfony)'
+      - name: "Build & Publish the Docker image (7.4 for Symfony)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -124,10 +125,10 @@ jobs:
           repository: ajardin/symfony-php
           path: symfony/php/7.4
           always_pull: true
-          tags: 7.4, latest
+          tags: "7.4,latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (8.0 for Symfony)'
+      - name: "Build & Publish the Docker image (8.0 for Symfony)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -135,19 +136,19 @@ jobs:
           repository: ajardin/symfony-php
           path: symfony/php/8.0
           always_pull: true
-          tags: 8.0
+          tags: "8.0"
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_sylius:
-    name: 'Sylius'
+    name: "Sylius"
     runs-on: ubuntu-latest
     needs: php_symfony
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image (7.3 for Sylius)'
+      - name: "Build & Publish the Docker image (7.3 for Sylius)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -155,10 +156,10 @@ jobs:
           repository: ajardin/sylius-php
           path: sylius/php/7.3
           always_pull: true
-          tags: 7.3
+          tags: "7.3"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (7.4 for Sylius)'
+      - name: "Build & Publish the Docker image (7.4 for Sylius)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -166,10 +167,10 @@ jobs:
           repository: ajardin/sylius-php
           path: sylius/php/7.4
           always_pull: true
-          tags: 7.4, latest
+          tags: "7.4,latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: 'Build & Publish the Docker image (8.0 for Sylius)'
+      - name: "Build & Publish the Docker image (8.0 for Sylius)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -177,5 +178,5 @@ jobs:
           repository: ajardin/sylius-php
           path: sylius/php/8.0
           always_pull: true
-          tags: 8.0
+          tags: "8.0"
           push: ${{ github.ref == 'refs/heads/master' }}

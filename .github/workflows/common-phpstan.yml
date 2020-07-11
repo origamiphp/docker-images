@@ -1,25 +1,26 @@
-name: 'PHPStan image'
+name: "PHPStan image"
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
     paths:
-      - '.github/workflows/common-phpstan.yml'
-      - 'common/phpstan/**'
+      - ".github/workflows/common-phpstan.yml"
+      - "common/phpstan/**"
   schedule:
     - cron: "0 0 * * *"
+
 
 jobs:
 
   phpstan:
-    name: 'Main'
+    name: "Main"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image'
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -27,5 +28,5 @@ jobs:
           repository: ajardin/phpstan
           path: common/phpstan/
           always_pull: true
-          tags: latest
+          tags: "latest"
           push: ${{ github.ref == 'refs/heads/master' }}

@@ -1,26 +1,27 @@
-name: 'Nginx images'
+name: "Nginx images"
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
     paths:
-      - '.github/workflows/nginx.yml'
-      - 'common/nginx/**'
-      - 'magento2/nginx/**'
+      - ".github/workflows/nginx.yml"
+      - "common/nginx/**"
+      - "magento2/nginx/**"
   schedule:
     - cron: "0 0 * * *"
+
 
 jobs:
 
   nginx_common:
-    name: 'Common'
+    name: "Common"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image'
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -28,19 +29,19 @@ jobs:
           repository: ajardin/nginx
           path: common/nginx/
           always_pull: true
-          tags: latest
+          tags: "latest"
           push: ${{ github.ref == 'refs/heads/master' }}
 
   nginx_magento:
-    name: 'Magento'
+    name: "Magento"
     runs-on: ubuntu-latest
     needs: nginx_common
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image'
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -48,5 +49,5 @@ jobs:
           repository: ajardin/magento2-nginx
           path: magento2/nginx/
           always_pull: true
-          tags: latest
+          tags: "latest"
           push: ${{ github.ref == 'refs/heads/master' }}

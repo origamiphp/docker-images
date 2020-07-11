@@ -1,25 +1,26 @@
-name: 'PhpMetrics image'
+name: "PhpMetrics image"
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
     paths:
-      - '.github/workflows/common-phpmetrics.yml'
-      - 'common/phpmetrics/**'
+      - ".github/workflows/common-phpmetrics.yml"
+      - "common/phpmetrics/**"
   schedule:
     - cron: "0 0 * * *"
+
 
 jobs:
 
   phpmetrics:
-    name: 'Main'
+    name: "Main"
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Prepare the build context'
+      - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: 'Build & Publish the Docker image'
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -27,5 +28,5 @@ jobs:
           repository: ajardin/phpmetrics
           path: common/phpmetrics/
           always_pull: true
-          tags: latest
+          tags: "latest"
           push: ${{ github.ref == 'refs/heads/master' }}
