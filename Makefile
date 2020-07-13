@@ -13,6 +13,7 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/nginx:latest common/nginx
 	docker build --tag=ajardin/phpcpd:latest common/phpcpd
 	docker build --tag=ajardin/phpcsfixer:latest common/phpcsfixer
+	docker build --tag=ajardin/phpinsights:latest common/phpinsights
 	docker build --tag=ajardin/phpmetrics:latest common/phpmetrics
 	docker build --tag=ajardin/phpstan:latest common/phpstan
 	docker build --tag=ajardin/psalm:latest common/psalm
