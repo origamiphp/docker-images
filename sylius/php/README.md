@@ -1,12 +1,21 @@
-Sylius images
-==============
-
-PHP images
-----------
+Sylius PHP images
+=================
 ![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/sylius-php?style=for-the-badge)
 
-Images based on `php:7.3-fpm-alpine` or `php:7.4-fpm-alpine` with Sylius prequisites, Composer, and the [Blackfire extension][1].
+✨ Features
+-----------
+* [Symfony requirements][1]
+* [Composer][2]
+* [Blackfire extension][3]
+
+Available versions: `ajardin/sylius-php:7.3`, `ajardin/sylius-php:7.4`, and `ajardin/sylius-php:8.0`.
+
+🚀 Usage
+--------
+```bash
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/sylius-php:latest sh
+```
 
 ```yaml
 services:
@@ -18,7 +27,7 @@ services:
       - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
     volumes:
       # Project files
-      - code_sync:/var/www/html:nocopy
+      - ${PROJECT_LOCATION}:/var/www/html:delegated
       # Custom configuration
       - ${PROJECT_LOCATION}/var/docker/php/php-cli.ini:/usr/local/etc/php/php-cli.ini:ro
       - ${PROJECT_LOCATION}/var/docker/php/php-fpm-fcgi.ini:/usr/local/etc/php/php-fpm-fcgi.ini:ro
@@ -29,4 +38,6 @@ services:
 ```
 
 <!-- Resources -->
-[1]: https://blackfire.io/docs/introduction
+[1]: https://docs.sylius.com/en/latest/book/installation/requirements.html
+[2]: https://getcomposer.org/
+[3]: https://blackfire.io/docs/introduction

@@ -3,7 +3,7 @@ FROM php:cli-alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Image with the Psalm tool."
 LABEL org.opencontainers.image.description="https://github.com/vimeo/psalm"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/psalm/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/common/psalm"
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
