@@ -5,7 +5,7 @@ Psalm image
 
 ✨ Features
 -----------
-An image based on `php:cli-alpine` with the [Psalm][1] tool with some additional extensions (PHPUnit and Symfony).
+An image based on `php:7.4-cli-alpine` with the [Psalm][1] tool with some additional extensions (PHPUnit and Symfony).
 
 🚀 Usage
 --------

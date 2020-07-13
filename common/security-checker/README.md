@@ -5,7 +5,7 @@ Security Checker image
 
 ✨ Features
 -----------
-An image based on `php:cli-alpine` with the [SensioLabs Security Checker][1].
+An image based on `php:7.4-cli-alpine` with the [SensioLabs Security Checker][1].
 
 🚀 Usage
 --------
