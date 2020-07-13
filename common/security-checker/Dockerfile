@@ -3,7 +3,7 @@ FROM php:cli-alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Image with the SensioLabs Security Checker."
 LABEL org.opencontainers.image.description="https://github.com/sensiolabs/security-checker"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/security/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/common/security-checker"
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

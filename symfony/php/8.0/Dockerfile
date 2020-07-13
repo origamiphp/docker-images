@@ -3,7 +3,7 @@ FROM php:8.0-rc-fpm-alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="PHP 8.0 image for a Symfony application."
 LABEL org.opencontainers.image.description="https://symfony.com/"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/symfony/php/8.0/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/symfony/php"
 
 # Install Symfony requirements
 RUN \

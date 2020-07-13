@@ -3,7 +3,7 @@ FROM php:cli-alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Image with the PHPStan tool."
 LABEL org.opencontainers.image.description="https://github.com/phpstan/phpstan"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/blob/master/common/phpstan/Dockerfile"
+LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/common/phpstan"
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

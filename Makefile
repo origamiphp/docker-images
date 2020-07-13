@@ -17,7 +17,6 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/phpstan:latest common/phpstan
 	docker build --tag=ajardin/psalm:latest common/psalm
 	docker build --tag=ajardin/security-checker:latest common/security-checker
-	docker build --tag=ajardin/synchronization:latest common/synchronization
 	docker build --tag=ajardin/yarn:latest common/yarn
 .PHONY: common
 

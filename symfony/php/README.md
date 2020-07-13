@@ -1,13 +1,22 @@
-Symfony images
-==============
-
-PHP images
-----------
+Symfony PHP images
+==================
 ![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/symfony-php?style=for-the-badge)
 
-Images based on `php:7.1-fpm-alpine`, `php:7.2-fpm-alpine`, `php:7.3-fpm-alpine`, or `php:7.4-fpm-alpine` with Symfony
-prequisites, Composer, and the [Blackfire extension][1].
+✨ Features
+-----------
+* [Symfony requirements][1]
+* [Composer][2]
+* [Blackfire extension][3]
+
+Available versions: `ajardin/symfony-php:7.1`, `ajardin/symfony-php:7.2`, `ajardin/symfony-php:7.3`,
+`ajardin/symfony-php:7.4`, and `ajardin/symfony-php:8.0`.
+
+🚀 Usage
+--------
+```bash
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/symfony-php:latest sh
+```
 
 ```yaml
 services:
@@ -19,7 +28,7 @@ services:
       - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
     volumes:
       # Project files
-      - code_sync:/var/www/html:nocopy
+      - ${PROJECT_LOCATION}:/var/www/html:delegated
       # Custom configuration
       - ${PROJECT_LOCATION}/var/docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
       # SSH socket
@@ -29,4 +38,6 @@ services:
 ```
 
 <!-- Resources -->
-[1]: https://blackfire.io/docs/introduction
+[1]: https://symfony.com/doc/current/setup.html#technical-requirements
+[2]: https://getcomposer.org/
+[3]: https://blackfire.io/docs/introduction
