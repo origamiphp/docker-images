@@ -5,7 +5,7 @@ PHP Coding Standards Fixer image
 
 ✨ Features
 -----------
-An image based on `php:cli-alpine` with the [PHP-CS-Fixer][1] tool.
+An image based on `php:7.4-cli-alpine` with the [PHP-CS-Fixer][1] tool.
 
 🚀 Usage
 --------

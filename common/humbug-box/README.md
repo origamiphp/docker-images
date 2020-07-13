@@ -5,7 +5,7 @@ Humbug Box image
 
 ✨ Features
 -----------
-An image based on `php:cli-alpine` with the [humbug/box][1] bundler.
+An image based on `php:7.4-cli-alpine` with the [humbug/box][1] bundler.
 
 🚀 Usage
 --------

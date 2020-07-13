@@ -5,7 +5,7 @@ PHPStan image
 
 ✨ Features
 -----------
-An image based on `php:cli-alpine` with the [PHPStan][1] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
+An image based on `php:7.4-cli-alpine` with the [PHPStan][1] tool with some additional extensions (PHPUnit, Symfony and Prophecy).
 
 🚀 Usage
 --------
