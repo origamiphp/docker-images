@@ -1,7 +1,7 @@
 PhpMetrics image
 ================
 ![PhpMetrics status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PhpMetrics%20image?style=for-the-badge)
-![PHP Coding Standards Fixer pulls](https://img.shields.io/docker/pulls/ajardin/phpmetrics?style=for-the-badge)
+![PhpMetrics pulls](https://img.shields.io/docker/pulls/ajardin/phpmetrics?style=for-the-badge)
 
 ✨ Features
 -----------

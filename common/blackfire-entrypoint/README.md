@@ -1,6 +1,6 @@
 Blackfire Entrypoint image
 ==========================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
+![Blackfire Entrypoint status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![Blackfire Entrypoint pulls](https://img.shields.io/docker/pulls/ajardin/blackfire-entrypoint?style=for-the-badge)
 
 ✨ Features
