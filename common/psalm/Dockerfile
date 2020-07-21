@@ -14,10 +14,9 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        vimeo/psalm:dev-master \
-        psalm/plugin-phpunit:dev-master psalm/plugin-symfony:dev-master
+        vimeo/psalm \
+        psalm/plugin-phpunit psalm/plugin-symfony
 
 WORKDIR /app
 

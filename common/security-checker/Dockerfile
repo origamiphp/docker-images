@@ -15,7 +15,7 @@ RUN \
     apk update && \
     apk add --no-cache git && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        sensiolabs/security-checker:dev-master
+        sensiolabs/security-checker
 
 WORKDIR /app
 

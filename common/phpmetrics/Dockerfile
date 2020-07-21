@@ -14,9 +14,8 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        phpmetrics/phpmetrics:dev-master
+        phpmetrics/phpmetrics
 
 WORKDIR /app
 

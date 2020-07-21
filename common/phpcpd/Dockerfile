@@ -14,9 +14,8 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        sebastian/phpcpd:dev-master
+        sebastian/phpcpd
 
 WORKDIR /app
 

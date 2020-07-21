@@ -14,11 +14,10 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global config minimum-stability dev && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
-        phpunit/phpunit:dev-master \
-        phpstan/phpstan:dev-master \
-        phpstan/phpstan-phpunit:dev-master phpstan/phpstan-symfony:dev-master jangregor/phpstan-prophecy:dev-master
+        phpunit/phpunit \
+        phpstan/phpstan \
+        phpstan/phpstan-phpunit phpstan/phpstan-symfony jangregor/phpstan-prophecy
 
 WORKDIR /app
 
