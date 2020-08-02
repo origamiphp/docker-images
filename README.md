@@ -24,7 +24,7 @@ Copyright © [Alexandre Jardin][8]. This project is licensed under the [MIT][9] 
 
 <!-- Resources -->
 [1]: /common
-[2]: /drupal
+[2]: /drupal/php
 [3]: /magento2
 [4]: /sylius/php
 [5]: /symfony/php
