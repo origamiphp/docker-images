@@ -4,7 +4,7 @@
 ## ----------------------------------------------------------------------------
 ##
 
-all: common magento2 sylius symfony ## Builds all Docker images
+all: common drupal magento2 sylius symfony ## Builds all Docker images
 .PHONY: all
 
 common: ## Builds all "common" images
@@ -20,6 +20,12 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/security-checker:latest common/security-checker
 	docker build --tag=ajardin/yarn:latest common/yarn
 .PHONY: common
+
+drupal: ## Builds all "drupal" images
+	docker build --tag=ajardin/drupal-php:7.2 drupal/php/7.2
+	docker build --tag=ajardin/drupal-php:7.3 drupal/php/7.3
+	docker build --tag=ajardin/drupal-php:7.4 --tag=ajardin/drupal-php:latest drupal/php/7.4
+.PHONY: drupal
 
 magento2: ## Builds all "magento2" images
 	docker build --tag=ajardin/magento2-elasticsearch:6.8 --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch/6.8
