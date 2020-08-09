@@ -5,7 +5,7 @@ Sylius PHP images
 
 ✨ Features
 -----------
-* [Symfony requirements][1]
+* [Sylius requirements][1]
 * [Composer][2]
 * [Blackfire extension][3]
 
