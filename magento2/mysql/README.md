@@ -1,13 +1,13 @@
-Magento 2 MySQL image
-=====================
-![MySQL for Magento 2 status](https://img.shields.io/github/workflow/status/ajardin/docker-images/MySQL%20for%20Magento%202%20image?style=for-the-badge)
+Magento 2 MySQL images
+======================
+![MySQL for Magento 2 status](https://img.shields.io/github/workflow/status/ajardin/docker-images/MySQL%20for%20Magento%202%20images?style=for-the-badge)
 ![MySQL for Magento 2 pulls](https://img.shields.io/docker/pulls/ajardin/magento2-mysql?style=for-the-badge)
 
 ✨ Features
 -----------
 * Custom configuration (`max_allowed_packet` at `256M`)
 
-Available version: `ajardin/magento2-mysql:latest`.
+Available versions: `ajardin/magento2-mysql:5.7` and `ajardin/magento2-mysql:8.0`.
 
 🚀 Usage
 --------
@@ -26,5 +26,3 @@ services:
 volumes:
   mysql: {}
 ```
-
-<!-- Resources -->
