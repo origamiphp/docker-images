@@ -1,4 +1,4 @@
-name: "MySQL for Magento 2 image"
+name: "MySQL for Magento 2 images"
 
 on:
   push:
@@ -21,13 +21,24 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image"
+      - name: "Build & Publish the Docker image (MySQL 5.7)"
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ajardin/magento2-mysql
-          path: magento2/mysql/
+          path: magento2/mysql/5.7
           always_pull: true
-          tags: "latest"
+          tags: "5.7"
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+      - name: "Build & Publish the Docker image (MySQL 8.0)"
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ajardin/magento2-mysql
+          path: magento2/mysql/8.0
+          always_pull: true
+          tags: "8.0,latest"
           push: ${{ github.ref == 'refs/heads/master' }}
