@@ -43,7 +43,7 @@ RUN \
 
 # Install the Blackfire PHP probe
 RUN \
-    blackfire_probe_version=1.39.0 && \
+    blackfire_probe_version=1.42.0 && \
     php_version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
     curl https://packages.blackfire.io/binaries/blackfire-php/${blackfire_probe_version}/blackfire-php-alpine_amd64-php-${php_version}.so \
         -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
