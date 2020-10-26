@@ -68,10 +68,6 @@ RUN \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
-RUN \
-    composer global require "hirak/prestissimo" --no-suggest --optimize-autoloader --classmap-authoritative && \
-    cp -R /root/.composer /home/www-data/.composer && \
-    chown -R www-data:www-data /home/www-data/.composer
 
 # Install custom entrypoint
 COPY --from=ajardin/blackfire-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
