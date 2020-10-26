@@ -24,15 +24,18 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v1
+      - name: "Login to DockerHub"
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/blackfire-entrypoint
-          path: common/blackfire-entrypoint
-          always_pull: true
-          tags: "latest"
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./common/blackfire-entrypoint/
+          file: ./common/blackfire-entrypoint/Dockerfile
+          tags: ajardin/blackfire-entrypoint:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_magento:
@@ -44,37 +47,36 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image (7.2 for Magento 2)"
-        uses: docker/build-push-action@v1
+      - name: "Login to DockerHub"
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/magento2-php
-          path: magento2/php/7.2
-          always_pull: true
-          tags: "7.2"
+
+      - name: "Build & Publish the Docker image (7.2 for Magento 2)"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./magento2/php/7.2/
+          file: ./magento2/php/7.2/Dockerfile
+          tags: ajardin/magento2-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.3 for Magento 2)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/magento2-php
-          path: magento2/php/7.3
-          always_pull: true
-          tags: "7.3,latest"
+          context: ./magento2/php/7.3/
+          file: ./magento2/php/7.3/Dockerfile
+          tags: ajardin/magento2-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.4 for Magento 2)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/magento2-php
-          path: magento2/php/7.4
-          always_pull: true
-          tags: "7.4"
+          context: ./magento2/php/7.4/
+          file: ./magento2/php/7.4/Dockerfile
+          tags: |
+            ajardin/magento2-php:7.4
+            ajardin/magento2-php:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_symfony:
@@ -86,59 +88,52 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image (7.1 for Symfony)"
-        uses: docker/build-push-action@v1
+      - name: "Login to DockerHub"
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/symfony-php
-          path: symfony/php/7.1
-          always_pull: true
-          tags: "7.1"
+
+      - name: "Build & Publish the Docker image (7.1 for Symfony)"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./symfony/php/7.1/
+          file: ./symfony/php/7.1/Dockerfile
+          tags: ajardin/symfony-php:7.1
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.2 for Symfony)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/symfony-php
-          path: symfony/php/7.2
-          always_pull: true
-          tags: "7.2"
+          context: ./symfony/php/7.2/
+          file: ./symfony/php/7.2/Dockerfile
+          tags: ajardin/symfony-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.3 for Symfony)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/symfony-php
-          path: symfony/php/7.3
-          always_pull: true
-          tags: "7.3"
+          context: ./symfony/php/7.3/
+          file: ./symfony/php/7.3/Dockerfile
+          tags: ajardin/symfony-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.4 for Symfony)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/symfony-php
-          path: symfony/php/7.4
-          always_pull: true
-          tags: "7.4,latest"
+          context: ./symfony/php/7.4/
+          file: ./symfony/php/7.4/Dockerfile
+          tags: |
+            ajardin/symfony-php:7.4
+            ajardin/symfony-php:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (8.0 for Symfony)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/symfony-php
-          path: symfony/php/8.0
-          always_pull: true
-          tags: "8.0"
+          context: ./symfony/php/8.0/
+          file: ./symfony/php/8.0/Dockerfile
+          tags: ajardin/symfony-php:8.0
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_sylius:
@@ -150,37 +145,36 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image (7.3 for Sylius)"
-        uses: docker/build-push-action@v1
+      - name: "Login to DockerHub"
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/sylius-php
-          path: sylius/php/7.3
-          always_pull: true
-          tags: "7.3"
+
+      - name: "Build & Publish the Docker image (7.3 for Sylius)"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./sylius/php/7.3/
+          file: ./sylius/php/7.3/Dockerfile
+          tags: ajardin/sylius-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.4 for Sylius)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/sylius-php
-          path: sylius/php/7.4
-          always_pull: true
-          tags: "7.4,latest"
+          context: ./sylius/php/7.4/
+          file: ./sylius/php/7.4/Dockerfile
+          tags: |
+            ajardin/sylius-php:7.4
+            ajardin/sylius-php:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (8.0 for Sylius)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/sylius-php
-          path: sylius/php/8.0
-          always_pull: true
-          tags: "8.0"
+          context: ./sylius/php/8.0/
+          file: ./sylius/php/8.0/Dockerfile
+          tags: ajardin/sylius-php:8.0
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_drupal:
@@ -192,35 +186,34 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v1
 
-      - name: "Build & Publish the Docker image (7.2 for Drupal)"
-        uses: docker/build-push-action@v1
+      - name: "Login to DockerHub"
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/drupal-php
-          path: drupal/php/7.2
-          always_pull: true
-          tags: "7.2"
+
+      - name: "Build & Publish the Docker image (7.2 for Drupal)"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./drupal/php/7.2/
+          file: ./drupal/php/7.2/Dockerfile
+          tags: ajardin/drupal-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.3 for Drupal)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/drupal-php
-          path: drupal/php/7.3
-          always_pull: true
-          tags: "7.3"
+          context: ./drupal/php/7.3/
+          file: ./drupal/php/7.3/Dockerfile
+          tags: ajardin/drupal-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (7.4 for Drupal)"
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ajardin/drupal-php
-          path: drupal/php/7.4
-          always_pull: true
-          tags: "7.4,latest"
+          context: ./drupal/php/7.4/
+          file: ./drupal/php/7.4/Dockerfile
+          tags: |
+            ajardin/drupal-php:7.4
+            ajardin/drupal-php:latest
           push: ${{ github.ref == 'refs/heads/master' }}
