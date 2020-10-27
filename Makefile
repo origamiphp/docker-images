@@ -28,14 +28,14 @@ drupal: ## Builds all "drupal" images
 .PHONY: drupal
 
 magento2: ## Builds all "magento2" images
-	docker build --tag=ajardin/magento2-elasticsearch:6.8 --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch/6.8
-	docker build --tag=ajardin/magento2-elasticsearch:7.6 magento2/elasticsearch/7.6
+	docker build --tag=ajardin/magento2-elasticsearch:6.8 magento2/elasticsearch/6.8
+	docker build --tag=ajardin/magento2-elasticsearch:7.6 --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch/7.6
 	docker build --tag=ajardin/magento2-mysql:5.7 magento2/mysql/5.7
 	docker build --tag=ajardin/magento2-mysql:8.0 --tag=ajardin/magento2-mysql:latest magento2/mysql/8.0
 	docker build --tag=ajardin/magento2-nginx:latest magento2/nginx
 	docker build --tag=ajardin/magento2-php:7.2 magento2/php/7.2
-	docker build --tag=ajardin/magento2-php:7.3 --tag=ajardin/magento2-php:latest magento2/php/7.3
-	docker build --tag=ajardin/magento2-php:7.4 magento2/php/7.4
+	docker build --tag=ajardin/magento2-php:7.3 magento2/php/7.3
+	docker build --tag=ajardin/magento2-php:7.4 --tag=ajardin/magento2-php:latest magento2/php/7.4
 .PHONY: magento2
 
 sylius: ## Builds all "sylius" images

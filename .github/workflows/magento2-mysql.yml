@@ -12,14 +12,13 @@ on:
     inputs:
 
 jobs:
-
-  mysql:
-    name: "Main"
+  mysql_57:
+    name: "5.7"
     runs-on: ubuntu-latest
 
     steps:
       - name: "Prepare the build context"
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: "Set-up Docker Buildx"
         uses: docker/setup-buildx-action@v1
@@ -37,6 +36,23 @@ jobs:
           file: ./magento2/mysql/5.7/Dockerfile
           tags: ajardin/magento2-mysql:5.7
           push: ${{ github.ref == 'refs/heads/master' }}
+
+  mysql_80:
+    name: "8.0"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: "Build & Publish the Docker image (MySQL 8.0)"
         uses: docker/build-push-action@v2
