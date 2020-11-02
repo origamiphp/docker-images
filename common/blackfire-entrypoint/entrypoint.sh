@@ -3,6 +3,7 @@ set -euo pipefail
 
 if [[ $(php -r "echo (int) extension_loaded('blackfire');") -eq 1 ]]; then
   configuration="${PHP_INI_DIR}"/conf.d/docker-php-ext-blackfire.ini
+  echo "extension=blackfire" > "${configuration}"
 
   if [[ -n ${BLACKFIRE_PORT:=} ]]; then
     echo "blackfire.agent_socket=tcp://blackfire:${BLACKFIRE_PORT}" >> "${configuration}"
