@@ -1,4 +1,4 @@
-FROM php:8.0-rc-fpm-alpine
+FROM php:8.0-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="PHP 8.0 image for a Symfony application."
@@ -36,18 +36,19 @@ RUN \
         pdo_mysql \
         pdo_pgsql \
         zip && \
-#    yes "" | pecl install apcu redis ssh2-1.2 && \
+#    yes "" | pecl install apcu redis ssh2-1.3 && \
+    yes "" | pecl install apcu redis && \
 #    docker-php-ext-enable apcu redis ssh2 && \
+    docker-php-ext-enable apcu redis && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
 
 # Install the Blackfire PHP probe
-#RUN \
-#    blackfire_probe_version=1.42.0 && \
-#    php_version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-#    curl https://packages.blackfire.io/binaries/blackfire-php/${blackfire_probe_version}/blackfire-php-alpine_amd64-php-${php_version}.so \
-#        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-#    docker-php-ext-enable blackfire
+ARG BLACKFIRE_PROBE_VERSION
+RUN \
+    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-80.so \
+        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    docker-php-ext-enable blackfire
 
 # Assign a new UID/GID to avoid using a generated value
 RUN \

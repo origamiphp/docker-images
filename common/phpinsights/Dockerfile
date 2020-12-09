@@ -14,7 +14,7 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
+    composer global require --optimize-autoloader --classmap-authoritative \
         nunomaduro/phpinsights
 
 WORKDIR /app

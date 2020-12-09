@@ -1,4 +1,4 @@
-FROM php:7.4-cli-alpine
+FROM php:8.0-cli-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Image with the PHPStan tool."
@@ -14,7 +14,7 @@ ENV PATH "${PATH}:/root/.composer/vendor/bin"
 RUN \
     apk update && \
     apk add --no-cache git && \
-    composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
+    composer global require --optimize-autoloader --classmap-authoritative \
         phpunit/phpunit \
         phpstan/phpstan \
         phpstan/phpstan-phpunit phpstan/phpstan-symfony jangregor/phpstan-prophecy
