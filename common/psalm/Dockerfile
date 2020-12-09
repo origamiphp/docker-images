@@ -16,7 +16,8 @@ RUN \
     apk add --no-cache git && \
     composer global require --no-suggest --optimize-autoloader --classmap-authoritative \
         vimeo/psalm \
-        psalm/plugin-phpunit psalm/plugin-symfony
+        psalm/plugin-phpunit psalm/plugin-symfony \
+        phpunit/phpunit
 
 WORKDIR /app
 
