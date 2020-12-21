@@ -42,10 +42,9 @@ RUN \
     apk del .build-deps
 
 # Install the Blackfire PHP probe
+ARG BLACKFIRE_PROBE_VERSION
 RUN \
-    blackfire_probe_version=1.42.0 && \
-    php_version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
-    curl https://packages.blackfire.io/binaries/blackfire-php/${blackfire_probe_version}/blackfire-php-alpine_amd64-php-${php_version}.so \
+    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-74.so \
         -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
     docker-php-ext-enable blackfire
 
