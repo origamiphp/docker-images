@@ -15,6 +15,10 @@ on:
   workflow_dispatch:
     inputs:
 
+env:
+  # Latest version of the Blackfire PHP probe
+  BLACKFIRE_PROBE_VERSION: "1.48.1"
+
 jobs:
   blackfire_entrypoint:
     name: "Blackfire Entrypoint"
@@ -64,6 +68,8 @@ jobs:
         with:
           context: ./magento2/php/7.2/
           file: ./magento2/php/7.2/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/magento2-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -90,17 +96,9 @@ jobs:
         with:
           context: ./magento2/php/7.3/
           file: ./magento2/php/7.3/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/magento2-php:7.3
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./magento2/php/7.4/
-          file: ./magento2/php/7.4/Dockerfile
-          tags: |
-            ajardin/magento2-php:7.4
-            ajardin/magento2-php:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_magento_74:
@@ -126,6 +124,8 @@ jobs:
         with:
           context: ./magento2/php/7.4/
           file: ./magento2/php/7.4/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: |
             ajardin/magento2-php:7.4
             ajardin/magento2-php:latest
@@ -154,6 +154,8 @@ jobs:
         with:
           context: ./symfony/php/7.2/
           file: ./symfony/php/7.2/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -180,6 +182,8 @@ jobs:
         with:
           context: ./symfony/php/7.3/
           file: ./symfony/php/7.3/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -206,6 +210,8 @@ jobs:
         with:
           context: ./symfony/php/7.4/
           file: ./symfony/php/7.4/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: |
             ajardin/symfony-php:7.4
             ajardin/symfony-php:latest
@@ -234,6 +240,8 @@ jobs:
         with:
           context: ./symfony/php/8.0/
           file: ./symfony/php/8.0/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:8.0
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -260,6 +268,8 @@ jobs:
         with:
           context: ./sylius/php/7.3/
           file: ./sylius/php/7.3/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -286,6 +296,8 @@ jobs:
         with:
           context: ./sylius/php/7.4/
           file: ./sylius/php/7.4/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: |
             ajardin/sylius-php:7.4
             ajardin/sylius-php:latest
@@ -314,6 +326,8 @@ jobs:
         with:
           context: ./sylius/php/8.0/
           file: ./sylius/php/8.0/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:8.0
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -340,6 +354,8 @@ jobs:
         with:
           context: ./drupal/php/7.2/
           file: ./drupal/php/7.2/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/drupal-php:7.2
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -366,6 +382,8 @@ jobs:
         with:
           context: ./drupal/php/7.3/
           file: ./drupal/php/7.3/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/drupal-php:7.3
           push: ${{ github.ref == 'refs/heads/master' }}
 
@@ -392,6 +410,8 @@ jobs:
         with:
           context: ./drupal/php/7.4/
           file: ./drupal/php/7.4/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: |
             ajardin/drupal-php:7.4
             ajardin/drupal-php:latest
