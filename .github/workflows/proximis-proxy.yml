@@ -1,11 +1,11 @@
-name: "PhpMetrics image"
+name: "Proximis proxy image"
 
 on:
   push:
     branches: ["**"]
     paths:
-      - ".github/workflows/common-phpmetrics.yml"
-      - "common/phpmetrics/**"
+      - ".github/workflows/proximis-proxy.yml"
+      - "common/proximis-proxy/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
 
 jobs:
 
-  phpmetrics:
+  proximis_proxy:
     name: "Main"
     runs-on: ubuntu-latest
 
@@ -33,7 +33,7 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./common/phpmetrics/
-          file: ./common/phpmetrics/Dockerfile
-          tags: ajardin/phpmetrics:latest
+          context: ./common/proximis-proxy/
+          file: ./common/proximis-proxy/Dockerfile
+          tags: ajardin/proximis-proxy:latest
           push: ${{ github.ref == 'refs/heads/master' }}
