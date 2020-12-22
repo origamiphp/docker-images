@@ -1,6 +1,12 @@
 FROM php:7-cli
 
-RUN apt-get update && apt-get install -y wget
+RUN \
+    apt-get update && \
+    apt-get install -y \
+        libzip-dev \
+        unzip \
+        wget && \
+    docker-php-ext-install -j$(nproc) zip
 
 # Install Composer globally
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
