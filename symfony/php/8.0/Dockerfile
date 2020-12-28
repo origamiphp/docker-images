@@ -40,6 +40,7 @@ RUN \
     yes "" | pecl install apcu pcov redis && \
 #    docker-php-ext-enable apcu redis ssh2 && \
     docker-php-ext-enable apcu pcov redis && \
+    echo "pcov.enabled = Off" >> $(php -r "echo ini_get('extension_dir');")/pcov.so && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
 
