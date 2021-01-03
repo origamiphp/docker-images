@@ -13,6 +13,7 @@ RUN \
         freetype-dev \
         git \
         icu-dev \
+        jq \
         libjpeg-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
