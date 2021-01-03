@@ -9,7 +9,7 @@ Drupal PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/drupal-php:7.2`, `ajardin/drupal-php:7.3`, and `ajardin/drupal-php:7.4`.
+Available versions: `ajardin/drupal-php:7.3` and `ajardin/drupal-php:7.4`.
 
 🚀 Usage
 --------
