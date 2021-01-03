@@ -9,8 +9,7 @@ Symfony PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/symfony-php:7.1`, `ajardin/symfony-php:7.2`, `ajardin/symfony-php:7.3`,
-`ajardin/symfony-php:7.4`, and `ajardin/symfony-php:8.0`.
+Available versions: `ajardin/symfony-php:7.3`, `ajardin/symfony-php:7.4`, and `ajardin/symfony-php:8.0`.
 
 🚀 Usage
 --------

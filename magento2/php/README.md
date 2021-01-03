@@ -10,7 +10,7 @@ Magento 2 PHP images
 * [Blackfire extension][3]
 * [n98-magerun2][4]
 
-Available versions: `ajardin/magento2-php:7.2`, `ajardin/magento2-php:7.3`, and `ajardin/magento2-php:7.4`.
+Available versions: `ajardin/magento2-php:7.3` and `ajardin/magento2-php:7.4`.
 
 🚀 Usage
 --------
