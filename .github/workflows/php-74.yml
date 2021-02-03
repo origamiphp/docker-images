@@ -4,7 +4,7 @@ on:
   push:
     branches: ["**"]
     paths:
-      - ".github/workflows/php.yml"
+      - ".github/workflows/php-74.yml"
       - "drupal/php/7.4/**"
       - "magento2/php/7.4/**"
       - "orocommerce/php/7.4/**"
@@ -180,6 +180,7 @@ jobs:
   php_orocommerce_74:
     name: "OroCommerce - Default"
     runs-on: ubuntu-latest
+    needs: php_symfony_74
 
     steps:
       - name: "Prepare the build context"
@@ -205,6 +206,7 @@ jobs:
   php_orocommerce_74_blackfire:
     name: "OroCommerce - Blackfire"
     runs-on: ubuntu-latest
+    needs: php_symfony_74_blackfire
 
     steps:
       - name: "Prepare the build context"
@@ -232,6 +234,7 @@ jobs:
   php_orocommerce_74_xdebug:
     name: "OroCommerce - Xdebug"
     runs-on: ubuntu-latest
+    needs: php_symfony_74_xdebug
 
     steps:
       - name: "Prepare the build context"

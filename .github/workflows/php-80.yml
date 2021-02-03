@@ -4,7 +4,7 @@ on:
   push:
     branches: ["**"]
     paths:
-      - ".github/workflows/php.yml"
+      - ".github/workflows/php-80.yml"
       - "drupal/php/8.0/**"
       - "magento2/php/8.0/**"
       - "orocommerce/php/8.0/**"
