@@ -1,7 +1,7 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.3-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="PHP 7.4 image for a Magento 2 application."
+LABEL org.opencontainers.image.title="PHP 7.3 image with Blackfire for a Magento 2 application."
 LABEL org.opencontainers.image.description="https://magento.com/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/magento2/php"
 
@@ -29,7 +29,11 @@ RUN \
         ssmtp \
         yarn && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
+    docker-php-ext-configure gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+        --with-webp-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) \
         bcmath \
         intl \
@@ -46,6 +50,13 @@ RUN \
     perl -pi -e "s|;pm.status_path = /status|pm.status_path = /php_fpm_status|g" /usr/local/etc/php-fpm.d/www.conf && \
     yarn global add grunt-cli gulp && \
     apk del .build-deps
+
+# Install the Blackfire PHP probe
+ARG BLACKFIRE_PROBE_VERSION
+RUN \
+    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-73.so \
+        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    docker-php-ext-enable blackfire
 
 # Install netz98/n98-magerun2
 RUN \

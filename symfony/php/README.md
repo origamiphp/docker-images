@@ -1,6 +1,5 @@
 Symfony PHP images
 ==================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/symfony-php?style=for-the-badge)
 
 ✨ Features
@@ -9,7 +8,14 @@ Symfony PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/symfony-php:7.3`, `ajardin/symfony-php:7.4`, and `ajardin/symfony-php:8.0`.
+🐳 Supported tags
+-----------------
+* [`ajardin/symfony-php:8.0`](/symfony/php/8.0/Dockerfile)
+* [`ajardin/symfony-php:8.0-blackfire`](/symfony/php/8.0/blackfire/Dockerfile)
+* [`ajardin/symfony-php:8.0-xdebug`](/symfony/php/8.0/xdebug/Dockerfile)
+* [`ajardin/symfony-php:7.4`](/symfony/php/7.4/Dockerfile)
+* [`ajardin/symfony-php:7.4-blackfire`](/symfony/php/7.4/blackfire/Dockerfile)
+* [`ajardin/symfony-php:7.4-xdebug`](/symfony/php/7.4/xdebug/Dockerfile)
 
 🚀 Usage
 --------

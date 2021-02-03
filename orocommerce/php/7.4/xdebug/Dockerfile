@@ -1,7 +1,7 @@
-FROM ajardin/symfony-php:8.0
+FROM ajardin/symfony-php:7.4-xdebug
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="PHP 8.0 image for an OroCommerce application."
+LABEL org.opencontainers.image.title="PHP 7.4 image with Xdebug for an OroCommerce application."
 LABEL org.opencontainers.image.description="https://oroinc.com/b2b-ecommerce/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/orocommerce/php"
 

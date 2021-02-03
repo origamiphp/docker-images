@@ -1,6 +1,5 @@
 Humbug Box image
 ================
-![Humbug Box status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Humbug%20Box%20image?style=for-the-badge)
 ![Humbug Box pulls](https://img.shields.io/docker/pulls/ajardin/humbug-box?style=for-the-badge)
 
 ✨ Features

@@ -1,6 +1,5 @@
 Sylius PHP images
 =================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/sylius-php?style=for-the-badge)
 
 ✨ Features
@@ -9,7 +8,14 @@ Sylius PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/sylius-php:7.3`, `ajardin/sylius-php:7.4`, and `ajardin/sylius-php:8.0`.
+🐳 Supported tags
+-----------------
+* [`ajardin/sylius-php:8.0`](/sylius/php/8.0/Dockerfile)
+* [`ajardin/sylius-php:8.0-blackfire`](/sylius/php/8.0/blackfire/Dockerfile)
+* [`ajardin/sylius-php:8.0-xdebug`](/sylius/php/8.0/xdebug/Dockerfile)
+* [`ajardin/sylius-php:7.4`](/sylius/php/7.4/Dockerfile)
+* [`ajardin/sylius-php:7.4-blackfire`](/sylius/php/7.4/blackfire/Dockerfile)
+* [`ajardin/sylius-php:7.4-xdebug`](/sylius/php/7.4/xdebug/Dockerfile)
 
 🚀 Usage
 --------
