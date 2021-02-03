@@ -1,6 +1,5 @@
 Nginx image
 ===========
-![Nginx status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Nginx%20images?style=for-the-badge)
 ![Nginx pulls](https://img.shields.io/docker/pulls/ajardin/nginx?style=for-the-badge)
 
 ✨ Features
@@ -29,5 +28,3 @@ services:
     tty: true
 # [...]
 ```
-
-<!-- Resources -->

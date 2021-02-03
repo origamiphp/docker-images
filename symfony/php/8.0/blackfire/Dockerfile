@@ -44,6 +44,13 @@ RUN \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
 
+# Install the Blackfire PHP probe
+ARG BLACKFIRE_PROBE_VERSION
+RUN \
+    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-80.so \
+        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
+    docker-php-ext-enable blackfire
+
 # Assign a new UID/GID to avoid using a generated value
 RUN \
     usermod -u 1000 www-data && \

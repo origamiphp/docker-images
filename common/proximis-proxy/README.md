@@ -1,6 +1,5 @@
 Proximis proxy image
 ====================
-![Proximis proxy status](https://img.shields.io/github/workflow/status/ajardin/docker-images/Proximis%20proxy%20image?style=for-the-badge)
 ![Proximis proxy pulls](https://img.shields.io/docker/pulls/ajardin/proximis-proxy?style=for-the-badge)
 
 ✨ Features

@@ -1,6 +1,5 @@
 OroCommerce PHP images
 ======================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/orocommerce-php?style=for-the-badge)
 
 ✨ Features
@@ -9,7 +8,11 @@ OroCommerce PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/orocommerce-php:7.4` and `ajardin/orocommerce-php:8.0`.
+🐳 Supported tags
+-----------------
+* [`ajardin/orocommerce-php:7.4`](/orocommerce/php/7.4/Dockerfile)
+* [`ajardin/orocommerce-php:7.4-blackfire`](/orocommerce/php/7.4/blackfire/Dockerfile)
+* [`ajardin/orocommerce-php:7.4-xdebug`](/orocommerce/php/7.4/xdebug/Dockerfile)
 
 🚀 Usage
 --------

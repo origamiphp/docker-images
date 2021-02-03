@@ -1,6 +1,5 @@
 Drupal PHP images
 ==================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/drupal-php?style=for-the-badge)
 
 ✨ Features
@@ -9,12 +8,19 @@ Drupal PHP images
 * [Composer][2]
 * [Blackfire extension][3]
 
-Available versions: `ajardin/drupal-php:7.3` and `ajardin/drupal-php:7.4`.
+🐳 Supported tags
+-----------------
+* [`ajardin/drupal-php:8.0`](/drupal/php/8.0/Dockerfile)
+* [`ajardin/drupal-php:8.0-blackfire`](/drupal/php/8.0/blackfire/Dockerfile)
+* [`ajardin/drupal-php:8.0-xdebug`](/drupal/php/8.0/xdebug/Dockerfile)
+* [`ajardin/drupal-php:7.4`](/drupal/php/7.4/Dockerfile)
+* [`ajardin/drupal-php:7.4-blackfire`](/drupal/php/7.4/blackfire/Dockerfile)
+* [`ajardin/drupal-php:7.4-xdebug`](/drupal/php/7.4/xdebug/Dockerfile)
 
 🚀 Usage
 --------
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/drupal-php:latest sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/drupal-php:7.4 sh
 ```
 
 ```yaml

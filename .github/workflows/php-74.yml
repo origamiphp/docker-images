@@ -1,16 +1,15 @@
-name: "PHP images"
+name: "PHP 7.4 images"
 
 on:
   push:
     branches: ["**"]
     paths:
       - ".github/workflows/php.yml"
-      - "common/blackfire-entrypoint/**"
-      - "drupal/php/**"
-      - "magento2/php/**"
-      - "orocommerce/php/**"
-      - "sylius/php/**"
-      - "symfony/php/**"
+      - "drupal/php/7.4/**"
+      - "magento2/php/7.4/**"
+      - "orocommerce/php/7.4/**"
+      - "sylius/php/7.4/**"
+      - "symfony/php/7.4/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -18,294 +17,11 @@ on:
 
 env:
   # Latest version of the Blackfire PHP probe
-  BLACKFIRE_PROBE_VERSION: "1.48.1"
+  BLACKFIRE_PROBE_VERSION: "1.49.1"
 
 jobs:
-  blackfire_entrypoint:
-    name: "Blackfire Entrypoint"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./common/blackfire-entrypoint/
-          file: ./common/blackfire-entrypoint/Dockerfile
-          tags: ajardin/blackfire-entrypoint:latest
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_magento_73:
-    name: "Magento - 7.3"
-    runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./magento2/php/7.3/
-          file: ./magento2/php/7.3/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/magento2-php:7.3
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_magento_74:
-    name: "Magento - 7.4"
-    runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./magento2/php/7.4/
-          file: ./magento2/php/7.4/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: |
-            ajardin/magento2-php:7.4
-            ajardin/magento2-php:latest
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_73:
-    name: "Symfony - 7.3"
-    runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/7.3/
-          file: ./symfony/php/7.3/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/symfony-php:7.3
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_74:
-    name: "Symfony - 7.4"
-    runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image (7.4 for Symfony)"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/7.4/
-          file: ./symfony/php/7.4/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: |
-            ajardin/symfony-php:7.4
-            ajardin/symfony-php:latest
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_80:
-    name: "Symfony - 8.0"
-    runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image (8.0 for Symfony)"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/8.0/
-          file: ./symfony/php/8.0/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/symfony-php:8.0
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_73:
-    name: "Sylius - 7.3"
-    runs-on: ubuntu-latest
-    needs: php_symfony_73
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image (7.3 for Sylius)"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/7.3/
-          file: ./sylius/php/7.3/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/sylius-php:7.3
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_74:
-    name: "Sylius - 7.4"
-    runs-on: ubuntu-latest
-    needs: php_symfony_74
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image (7.4 for Sylius)"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/7.4/
-          file: ./sylius/php/7.4/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: |
-            ajardin/sylius-php:7.4
-            ajardin/sylius-php:latest
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_80:
-    name: "Sylius - 8.0"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image (8.0 for Sylius)"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/8.0/
-          file: ./sylius/php/8.0/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/sylius-php:8.0
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_drupal_73:
-    name: "Drupal - 7.3"
-    runs-on: ubuntu-latest
-    needs: php_symfony_73
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set-up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log-in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./drupal/php/7.3/
-          file: ./drupal/php/7.3/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/drupal-php:7.3
-          push: ${{ github.ref == 'refs/heads/master' }}
-
   php_drupal_74:
-    name: "Drupal - 7.4"
+    name: "Drupal - Default"
     runs-on: ubuntu-latest
     needs: php_symfony_74
 
@@ -327,17 +43,13 @@ jobs:
         with:
           context: ./drupal/php/7.4/
           file: ./drupal/php/7.4/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: |
-            ajardin/drupal-php:7.4
-            ajardin/drupal-php:latest
+          tags: ajardin/drupal-php:7.4
           push: ${{ github.ref == 'refs/heads/master' }}
 
-  php_orocommerce_74:
-    name: "OroCommerce - 7.4"
+  php_drupal_74_blackfire:
+    name: "Drupal - Blackfire"
     runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
+    needs: php_symfony_74_blackfire
 
     steps:
       - name: "Prepare the build context"
@@ -352,22 +64,147 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: "Build & Publish the Docker image (7.4 for OroCommerce)"
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./drupal/php/7.4/blackfire/
+          file: ./drupal/php/7.4/blackfire/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
+          tags: ajardin/drupal-php:7.4-blackfire
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_drupal_74_xdebug:
+    name: "Drupal - Xdebug"
+    runs-on: ubuntu-latest
+    needs: php_symfony_74_xdebug
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./drupal/php/7.4/xdebug/
+          file: ./drupal/php/7.4/xdebug/Dockerfile
+          tags: ajardin/drupal-php:7.4-xdebug
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_magento_74:
+    name: "Magento - Default"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./magento2/php/7.4/
+          file: ./magento2/php/7.4/Dockerfile
+          tags: ajardin/magento2-php:7.4
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_magento_74_blackfire:
+    name: "Magento - Blackfire"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./magento2/php/7.4/blackfire/
+          file: ./magento2/php/7.4/blackfire/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
+          tags: ajardin/magento2-php:7.4-blackfire
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_magento_74_xdebug:
+    name: "Magento - Xdebug"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./magento2/php/7.4/xdebug/
+          file: ./magento2/php/7.4/xdebug/Dockerfile
+          tags: ajardin/magento2-php:7.4-xdebug
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_orocommerce_74:
+    name: "OroCommerce - Default"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
           context: ./orocommerce/php/7.4/
           file: ./orocommerce/php/7.4/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: |
-            ajardin/orocommerce-php:7.4
-            ajardin/orocommerce-php:latest
+          tags: ajardin/orocommerce-php:7.4
           push: ${{ github.ref == 'refs/heads/master' }}
 
-  php_orocommerce_80:
-    name: "OroCommerce - 8.0"
+  php_orocommerce_74_blackfire:
+    name: "OroCommerce - Blackfire"
     runs-on: ubuntu-latest
-    needs: blackfire_entrypoint
 
     steps:
       - name: "Prepare the build context"
@@ -382,12 +219,196 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: "Build & Publish the Docker image (8.0 for OroCommerce)"
+      - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./orocommerce/php/8.0/
-          file: ./orocommerce/php/8.0/Dockerfile
+          context: ./orocommerce/php/7.4/blackfire/
+          file: ./orocommerce/php/7.4/blackfire/Dockerfile
           build-args: |
             BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
-          tags: ajardin/orocommerce-php:8.0
+          tags: ajardin/orocommerce-php:7.4-blackfire
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_orocommerce_74_xdebug:
+    name: "OroCommerce - Xdebug"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./orocommerce/php/7.4/xdebug/
+          file: ./orocommerce/php/7.4/xdebug/Dockerfile
+          tags: ajardin/orocommerce-php:7.4-xdebug
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_sylius_74:
+    name: "Sylius - Default"
+    runs-on: ubuntu-latest
+    needs: php_symfony_74
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./sylius/php/7.4/
+          file: ./sylius/php/7.4/Dockerfile
+          tags: ajardin/sylius-php:7.4
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_sylius_74_blackfire:
+    name: "Sylius - Blackfire"
+    runs-on: ubuntu-latest
+    needs: php_symfony_74_blackfire
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./sylius/php/7.4/blackfire/
+          file: ./sylius/php/7.4/blackfire/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
+          tags: ajardin/sylius-php:7.4-blackfire
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_sylius_74_xdebug:
+    name: "Sylius - Xdebug"
+    runs-on: ubuntu-latest
+    needs: php_symfony_74_xdebug
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./sylius/php/7.4/xdebug/
+          file: ./sylius/php/7.4/xdebug/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
+          tags: ajardin/sylius-php:7.4-xdebug
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_symfony_74:
+    name: "Symfony - Default"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./symfony/php/7.4/
+          file: ./symfony/php/7.4/Dockerfile
+          tags: ajardin/symfony-php:7.4
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_symfony_74_blackfire:
+    name: "Symfony - Blackfire"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./symfony/php/7.4/blackfire/
+          file: ./symfony/php/7.4/blackfire/Dockerfile
+          build-args: |
+            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
+          tags: ajardin/symfony-php:7.4-blackfire
+          push: ${{ github.ref == 'refs/heads/master' }}
+
+  php_symfony_74_xdebug:
+    name: "Symfony - Xdebug"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Prepare the build context"
+        uses: actions/checkout@v2
+
+      - name: "Set-up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Log-in to DockerHub"
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build & Publish the Docker image"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./symfony/php/7.4/xdebug/
+          file: ./symfony/php/7.4/xdebug/Dockerfile
+          tags: ajardin/symfony-php:7.4-xdebug
           push: ${{ github.ref == 'refs/heads/master' }}

@@ -1,6 +1,5 @@
 Magento 2 PHP images
 ====================
-![PHP status](https://img.shields.io/github/workflow/status/ajardin/docker-images/PHP%20images?style=for-the-badge)
 ![PHP pulls](https://img.shields.io/docker/pulls/ajardin/magento2-php?style=for-the-badge)
 
 ✨ Features
@@ -10,7 +9,14 @@ Magento 2 PHP images
 * [Blackfire extension][3]
 * [n98-magerun2][4]
 
-Available versions: `ajardin/magento2-php:7.3` and `ajardin/magento2-php:7.4`.
+🐳 Supported tags
+-----------------
+* [`ajardin/magento2-php:7.4`](/magento2/php/7.4/Dockerfile)
+* [`ajardin/magento2-php:7.4-blackfire`](/magento2/php/7.4/blackfire/Dockerfile)
+* [`ajardin/magento2-php:7.4-xdebug`](/magento2/php/7.4/xdebug/Dockerfile)
+* [`ajardin/magento2-php:7.3`](/magento2/php/7.3/Dockerfile)
+* [`ajardin/magento2-php:7.3-blackfire`](/magento2/php/7.3/blackfire/Dockerfile)
+* [`ajardin/magento2-php:7.3-xdebug`](/magento2/php/7.3/xdebug/Dockerfile)
 
 🚀 Usage
 --------

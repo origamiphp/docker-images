@@ -51,13 +51,6 @@ RUN \
     yarn global add grunt-cli gulp && \
     apk del .build-deps
 
-# Install the Blackfire PHP probe
-ARG BLACKFIRE_PROBE_VERSION
-RUN \
-    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-73.so \
-        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-    docker-php-ext-enable blackfire
-
 # Install netz98/n98-magerun2
 RUN \
     curl -sS https://files.magerun.net/n98-magerun2.phar --output /usr/local/bin/magerun2 && \
