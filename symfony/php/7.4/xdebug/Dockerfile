@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="PHP 7.4 image for a Symfony application."
+LABEL org.opencontainers.image.title="PHP 7.4 image with Xdebug for a Symfony application."
 LABEL org.opencontainers.image.description="https://symfony.com/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/symfony/php"
 
@@ -38,16 +38,9 @@ RUN \
         pdo_pgsql \
         zip && \
     yes "" | pecl install apcu redis ssh2-1.2 xdebug && \
-    docker-php-ext-enable apcu redis ssh2 && \
+    docker-php-ext-enable apcu redis ssh2 xdebug && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
-
-# Install the Blackfire PHP probe
-ARG BLACKFIRE_PROBE_VERSION
-RUN \
-    curl https://packages.blackfire.io/binaries/blackfire-php/${BLACKFIRE_PROBE_VERSION}/blackfire-php-alpine_amd64-php-74.so \
-        -sS --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-    docker-php-ext-enable blackfire
 
 # Assign a new UID/GID to avoid using a generated value
 RUN \
