@@ -5,7 +5,7 @@
 * [Common images](/common)
 * [Drupal images](/drupal/php)
 * [Magento 2 images](/magento2)
-* [OroCommerce images](/orocommerce/php)
+* [OroCommerce images](/orocommerce)
 * [Sylius images](/sylius/php)
 * [Symfony images](/symfony/php)
 

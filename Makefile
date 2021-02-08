@@ -41,6 +41,7 @@ orocommerce: ## Builds all "orocommerce" images
 	docker build --build-arg="BLACKFIRE_PROBE_VERSION=${BLACKFIRE_PROBE_VERSION}" --tag=ajardin/orocommerce-php:7.4 orocommerce/php/7.4
 	docker build --build-arg="BLACKFIRE_PROBE_VERSION=${BLACKFIRE_PROBE_VERSION}" --tag=ajardin/orocommerce-php:7.4-blackfire orocommerce/php/7.4/blackfire
 	docker build --build-arg="BLACKFIRE_PROBE_VERSION=${BLACKFIRE_PROBE_VERSION}" --tag=ajardin/orocommerce-php:7.4-xdebug orocommerce/php/7.4/xdebug
+	docker build --tag=ajardin/orocommerce-rabbitmq:3.8 orocommerce/rabbitmq/3.8
 .PHONY: orocommerce
 
 sylius: ## Builds all "sylius" images

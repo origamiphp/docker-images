@@ -1,0 +1,46 @@
+{
+    "bindings": [
+        {
+            "arguments": {
+            },
+            "destination": "oro.default",
+            "destination_type": "queue",
+            "routing_key": "",
+            "source": "oro.default",
+            "vhost": "/"
+        }
+    ],
+    "exchanges": [
+        {
+            "arguments": {
+            },
+            "auto_delete": false,
+            "durable": true,
+            "name": "oro.default",
+            "type": "fanout",
+            "vhost": "/"
+        },
+        {
+            "arguments": {
+                "x-delayed-type": "fanout"
+            },
+            "auto_delete": false,
+            "durable": true,
+            "name": "oro.default.delayed",
+            "type": "x-delayed-message",
+            "vhost": "/"
+        }
+    ],
+    "queues": [
+        {
+            "arguments": {
+                "x-max-priority": 4
+            },
+            "auto_delete": false,
+            "durable": true,
+            "name": "oro.default",
+            "type": "classic",
+            "vhost": "/"
+        }
+    ]
+}
