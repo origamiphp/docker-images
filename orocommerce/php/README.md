@@ -17,7 +17,7 @@ OroCommerce PHP images
 🚀 Usage
 --------
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/orocommerce-php:latest sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/orocommerce-php:7.4 sh
 ```
 
 ```yaml

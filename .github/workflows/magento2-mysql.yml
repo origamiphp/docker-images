@@ -59,7 +59,5 @@ jobs:
         with:
           context: ./magento2/mysql/8.0/
           file: ./magento2/mysql/8.0/Dockerfile
-          tags: |
-            ajardin/magento2-mysql:8.0
-            ajardin/magento2-mysql:latest
+          tags: ajardin/magento2-mysql:8.0
           push: ${{ github.ref == 'refs/heads/master' }}

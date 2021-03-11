@@ -17,7 +17,7 @@ Magento 2 Elasticsearch image
 services:
 # [...]
   elasticsearch:
-    image: ajardin/magento2-elasticsearch:latest
+    image: ajardin/magento2-elasticsearch:7.6
     env_file: ${PROJECT_LOCATION}/var/docker/.env
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data

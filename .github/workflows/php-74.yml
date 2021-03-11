@@ -17,7 +17,7 @@ on:
 
 env:
   # Latest version of the Blackfire PHP probe
-  BLACKFIRE_PROBE_VERSION: "1.49.1"
+  BLACKFIRE_PROBE_VERSION: "1.52.0"
 
 jobs:
   php_drupal_74:

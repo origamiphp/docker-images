@@ -21,7 +21,7 @@ Magento 2 PHP images
 🚀 Usage
 --------
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/magento2-php:latest sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/magento2-php:7.4 sh
 ```
 
 ```yaml

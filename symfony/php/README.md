@@ -20,7 +20,7 @@ Symfony PHP images
 🚀 Usage
 --------
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/symfony-php:latest sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/symfony-php:8.0 sh
 ```
 
 ```yaml

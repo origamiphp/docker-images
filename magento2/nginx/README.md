@@ -21,7 +21,7 @@ services:
       - 443:443
     volumes:
       # Project files
-      - code_sync:/var/www/html:nocopy
+      - ${PROJECT_LOCATION}:/var/www/html:delegated
       # SSL certificates
       - ${PROJECT_LOCATION}/var/docker/nginx/certs:/etc/nginx/ssl:cached
       # Custom configuration
