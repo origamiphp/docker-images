@@ -5,7 +5,7 @@
 ##
 
 # Latest version of the Blackfire PHP probe
-BLACKFIRE_PROBE_VERSION=1.49.1
+BLACKFIRE_PROBE_VERSION=1.52.0
 
 all: common drupal magento2 sylius symfony ## Builds all Docker images
 .PHONY: all
@@ -15,6 +15,7 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/humbug-box:latest common/humbug-box
 	docker build --tag=ajardin/nginx:latest common/nginx
 	docker build --tag=ajardin/proximis-proxy:latest common/proximis-proxy
+	docker build --tag=ajardin/synchro:latest common/synchro
 .PHONY: common
 
 drupal: ## Builds all "drupal" images
@@ -28,9 +29,9 @@ drupal: ## Builds all "drupal" images
 
 magento2: ## Builds all "magento2" images
 	docker build --tag=ajardin/magento2-elasticsearch:6.8 magento2/elasticsearch/6.8
-	docker build --tag=ajardin/magento2-elasticsearch:7.6 --tag=ajardin/magento2-elasticsearch:latest magento2/elasticsearch/7.6
+	docker build --tag=ajardin/magento2-elasticsearch:7.6 magento2/elasticsearch/7.6
 	docker build --tag=ajardin/magento2-mysql:5.7 magento2/mysql/5.7
-	docker build --tag=ajardin/magento2-mysql:8.0 --tag=ajardin/magento2-mysql:latest magento2/mysql/8.0
+	docker build --tag=ajardin/magento2-mysql:8.0 magento2/mysql/8.0
 	docker build --tag=ajardin/magento2-nginx:latest magento2/nginx
 	docker build --build-arg="BLACKFIRE_PROBE_VERSION=${BLACKFIRE_PROBE_VERSION}" --tag=ajardin/magento2-php:7.4 magento2/php/7.4
 	docker build --build-arg="BLACKFIRE_PROBE_VERSION=${BLACKFIRE_PROBE_VERSION}" --tag=ajardin/magento2-php:7.4-blackfire magento2/php/7.4/blackfire

@@ -20,7 +20,7 @@ Sylius PHP images
 🚀 Usage
 --------
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/sylius-php:latest sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/sylius-php:8.0 sh
 ```
 
 ```yaml

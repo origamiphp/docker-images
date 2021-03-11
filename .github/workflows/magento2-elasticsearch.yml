@@ -59,7 +59,5 @@ jobs:
         with:
           context: ./magento2/elasticsearch/7.6/
           file: ./magento2/elasticsearch/7.6/Dockerfile
-          tags: |
-            ajardin/magento2-elasticsearch:7.6
-            ajardin/magento2-elasticsearch:latest
+          tags: ajardin/magento2-elasticsearch:7.6
           push: ${{ github.ref == 'refs/heads/master' }}

@@ -17,7 +17,7 @@ Magento 2 MySQL images
 services:
 # [...]
   mysql:
-    image: ajardin/magento2-mysql:latest
+    image: ajardin/magento2-mysql:8.0
     env_file: ${PROJECT_LOCATION}/var/docker/.env
     ports:
       - 3306:3306
