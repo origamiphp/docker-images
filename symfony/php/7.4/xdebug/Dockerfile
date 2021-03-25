@@ -37,7 +37,7 @@ RUN \
         pdo_mysql \
         pdo_pgsql \
         zip && \
-    yes "" | pecl install apcu redis ssh2-1.2 xdebug && \
+    yes "" | pecl install apcu redis ssh2-1.3 xdebug && \
     docker-php-ext-enable apcu redis ssh2 xdebug && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     apk del .build-deps
