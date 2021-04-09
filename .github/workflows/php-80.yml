@@ -29,10 +29,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -44,6 +47,7 @@ jobs:
           context: ./drupal/php/8.0/
           file: ./drupal/php/8.0/Dockerfile
           tags: ajardin/drupal-php:8.0
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_drupal_80_blackfire:
@@ -55,10 +59,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -72,6 +79,7 @@ jobs:
           build-args: |
             BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/drupal-php:8.0-blackfire
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_drupal_80_xdebug:
@@ -83,10 +91,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -98,6 +109,7 @@ jobs:
           context: ./drupal/php/8.0/xdebug/
           file: ./drupal/php/8.0/xdebug/Dockerfile
           tags: ajardin/drupal-php:8.0-xdebug
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_sylius_80:
@@ -109,10 +121,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -124,6 +139,7 @@ jobs:
           context: ./sylius/php/8.0/
           file: ./sylius/php/8.0/Dockerfile
           tags: ajardin/sylius-php:8.0
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_sylius_80_blackfire:
@@ -135,10 +151,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -152,6 +171,7 @@ jobs:
           build-args: |
             BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:8.0-blackfire
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_sylius_80_xdebug:
@@ -163,10 +183,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -180,6 +203,7 @@ jobs:
           build-args: |
             BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:8.0-xdebug
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_symfony_80:
@@ -190,10 +214,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -205,6 +232,7 @@ jobs:
           context: ./symfony/php/8.0/
           file: ./symfony/php/8.0/Dockerfile
           tags: ajardin/symfony-php:8.0
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_symfony_80_blackfire:
@@ -215,10 +243,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -232,6 +263,7 @@ jobs:
           build-args: |
             BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:8.0-blackfire
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
   php_symfony_80_xdebug:
@@ -242,10 +274,13 @@ jobs:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
 
-      - name: "Set-up Docker Buildx"
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
 
-      - name: "Log-in to DockerHub"
+      - name: "Log in to DockerHub"
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -257,4 +292,5 @@ jobs:
           context: ./symfony/php/8.0/xdebug/
           file: ./symfony/php/8.0/xdebug/Dockerfile
           tags: ajardin/symfony-php:8.0-xdebug
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
