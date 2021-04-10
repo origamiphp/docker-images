@@ -1,7 +1,7 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.9
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.12.0
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
-LABEL org.opencontainers.image.title="Elasticsearch 6.8 image for a Magento 2 application."
+LABEL org.opencontainers.image.title="Elasticsearch 7.x image for a Magento 2 application."
 LABEL org.opencontainers.image.description="https://magento.com/"
 LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/magento2/elasticsearch"
 

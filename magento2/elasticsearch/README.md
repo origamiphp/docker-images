@@ -8,8 +8,8 @@ Magento 2 Elasticsearch image
 
 🐳 Supported tags
 -----------------
-* [`ajardin/magento2-elasticsearch:7.6`](/magento2/elasticsearch/7.6/Dockerfile)
-* [`ajardin/magento2-elasticsearch:6.8`](/magento2/elasticsearch/6.8/Dockerfile)
+* [`ajardin/magento2-elasticsearch:7`](/magento2/elasticsearch/7.x/Dockerfile)
+* [`ajardin/magento2-elasticsearch:6`](/magento2/elasticsearch/6.x/Dockerfile)
 
 🚀 Usage
 --------
@@ -17,7 +17,7 @@ Magento 2 Elasticsearch image
 services:
 # [...]
   elasticsearch:
-    image: ajardin/magento2-elasticsearch:7.6
+    image: ajardin/magento2-elasticsearch:7
     env_file: ${PROJECT_LOCATION}/var/docker/.env
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data

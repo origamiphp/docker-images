@@ -12,8 +12,8 @@ on:
     inputs:
 
 jobs:
-  elasticsearch_68:
-    name: "6.8"
+  elasticsearch_6x:
+    name: "6.x"
     runs-on: ubuntu-latest
 
     steps:
@@ -35,14 +35,14 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./magento2/elasticsearch/6.8/
-          file: ./magento2/elasticsearch/6.8/Dockerfile
-          tags: ajardin/magento2-elasticsearch:6.8
+          context: ./magento2/elasticsearch/6.x/
+          file: ./magento2/elasticsearch/6.x/Dockerfile
+          tags: ajardin/magento2-elasticsearch:6
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
-  elasticsearch_76:
-    name: "7.6"
+  elasticsearch_7x:
+    name: "7.x"
     runs-on: ubuntu-latest
 
     steps:
@@ -64,8 +64,8 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./magento2/elasticsearch/7.6/
-          file: ./magento2/elasticsearch/7.6/Dockerfile
-          tags: ajardin/magento2-elasticsearch:7.6
+          context: ./magento2/elasticsearch/7.x/
+          file: ./magento2/elasticsearch/7.x/Dockerfile
+          tags: ajardin/magento2-elasticsearch:7
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
