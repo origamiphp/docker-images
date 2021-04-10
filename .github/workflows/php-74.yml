@@ -15,10 +15,6 @@ on:
   workflow_dispatch:
     inputs:
 
-env:
-  # Latest version of the Blackfire PHP probe
-  BLACKFIRE_PROBE_VERSION: "1.52.0"
-
 jobs:
   php_drupal_74:
     name: "Drupal - Default"
@@ -76,8 +72,6 @@ jobs:
         with:
           context: ./drupal/php/7.4/blackfire/
           file: ./drupal/php/7.4/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/drupal-php:7.4-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -166,8 +160,6 @@ jobs:
         with:
           context: ./magento2/php/7.4/blackfire/
           file: ./magento2/php/7.4/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/magento2-php:7.4-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -257,8 +249,6 @@ jobs:
         with:
           context: ./orocommerce/php/7.4/blackfire/
           file: ./orocommerce/php/7.4/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/orocommerce-php:7.4-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -349,8 +339,6 @@ jobs:
         with:
           context: ./sylius/php/7.4/blackfire/
           file: ./sylius/php/7.4/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:7.4-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -381,8 +369,6 @@ jobs:
         with:
           context: ./sylius/php/7.4/xdebug/
           file: ./sylius/php/7.4/xdebug/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:7.4-xdebug
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -441,8 +427,6 @@ jobs:
         with:
           context: ./symfony/php/7.4/blackfire/
           file: ./symfony/php/7.4/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:7.4-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}

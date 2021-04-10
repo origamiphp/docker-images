@@ -15,10 +15,6 @@ on:
   workflow_dispatch:
     inputs:
 
-env:
-  # Latest version of the Blackfire PHP probe
-  BLACKFIRE_PROBE_VERSION: "1.52.0"
-
 jobs:
   php_drupal_80:
     name: "Drupal - Default"
@@ -76,8 +72,6 @@ jobs:
         with:
           context: ./drupal/php/8.0/blackfire/
           file: ./drupal/php/8.0/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/drupal-php:8.0-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -168,8 +162,6 @@ jobs:
         with:
           context: ./sylius/php/8.0/blackfire/
           file: ./sylius/php/8.0/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:8.0-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -200,8 +192,6 @@ jobs:
         with:
           context: ./sylius/php/8.0/xdebug/
           file: ./sylius/php/8.0/xdebug/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/sylius-php:8.0-xdebug
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
@@ -260,8 +250,6 @@ jobs:
         with:
           context: ./symfony/php/8.0/blackfire/
           file: ./symfony/php/8.0/blackfire/Dockerfile
-          build-args: |
-            BLACKFIRE_PROBE_VERSION=${{ env.BLACKFIRE_PROBE_VERSION }}
           tags: ajardin/symfony-php:8.0-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
