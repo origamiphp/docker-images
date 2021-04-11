@@ -1,11 +1,11 @@
-name: "PHP 7.4 images"
+name: "PHP 7.3 images"
 
 on:
   push:
     branches: ["**"]
     paths:
-      - ".github/workflows/php-74.yml"
-      - "php/7.4/**"
+      - ".github/workflows/php-73.yml"
+      - "php/7.3/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -34,26 +34,26 @@ jobs:
       - name: "Build & Publish the Docker image (default)"
         uses: docker/build-push-action@v2
         with:
-          context: ./php/7.4/
-          file: ./php/7.4/Dockerfile
-          tags: ajardin/php:7.4
+          context: ./php/7.3/
+          file: ./php/7.3/Dockerfile
+          tags: ajardin/php:7.3
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (Blackfire)"
         uses: docker/build-push-action@v2
         with:
-          context: ./php/7.4/blackfire/
-          file: ./php/7.4/blackfire/Dockerfile
-          tags: ajardin/php:7.4-blackfire
+          context: ./php/7.3/blackfire/
+          file: ./php/7.3/blackfire/Dockerfile
+          tags: ajardin/php:7.3-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: "Build & Publish the Docker image (Xdebug)"
         uses: docker/build-push-action@v2
         with:
-          context: ./php/7.4/xdebug/
-          file: ./php/7.4/xdebug/Dockerfile
-          tags: ajardin/php:7.4-xdebug
+          context: ./php/7.3/xdebug/
+          file: ./php/7.3/xdebug/Dockerfile
+          tags: ajardin/php:7.3-xdebug
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}

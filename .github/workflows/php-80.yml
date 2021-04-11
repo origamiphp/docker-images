@@ -5,21 +5,15 @@ on:
     branches: ["**"]
     paths:
       - ".github/workflows/php-80.yml"
-      - "drupal/php/8.0/**"
-      - "magento2/php/8.0/**"
-      - "orocommerce/php/8.0/**"
-      - "sylius/php/8.0/**"
-      - "symfony/php/8.0/**"
+      - "php/8.0/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
 
 jobs:
-  php_drupal_80:
-    name: "Drupal - Default"
+  main:
     runs-on: ubuntu-latest
-    needs: php_symfony_80
 
     steps:
       - name: "Prepare the build context"
@@ -37,248 +31,29 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: "Build & Publish the Docker image"
+      - name: "Build & Publish the Docker image (default)"
         uses: docker/build-push-action@v2
         with:
-          context: ./drupal/php/8.0/
-          file: ./drupal/php/8.0/Dockerfile
-          tags: ajardin/drupal-php:8.0
+          context: ./php/8.0/
+          file: ./php/8.0/Dockerfile
+          tags: ajardin/php:8.0
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
-  php_drupal_80_blackfire:
-    name: "Drupal - Blackfire"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80_blackfire
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
+      - name: "Build & Publish the Docker image (Blackfire)"
         uses: docker/build-push-action@v2
         with:
-          context: ./drupal/php/8.0/blackfire/
-          file: ./drupal/php/8.0/blackfire/Dockerfile
-          tags: ajardin/drupal-php:8.0-blackfire
+          context: ./php/8.0/blackfire/
+          file: ./php/8.0/blackfire/Dockerfile
+          tags: ajardin/php:8.0-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
 
-  php_drupal_80_xdebug:
-    name: "Drupal - Xdebug"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80_xdebug
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
+      - name: "Build & Publish the Docker image (Xdebug)"
         uses: docker/build-push-action@v2
         with:
-          context: ./drupal/php/8.0/xdebug/
-          file: ./drupal/php/8.0/xdebug/Dockerfile
-          tags: ajardin/drupal-php:8.0-xdebug
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_80:
-    name: "Sylius - Default"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/8.0/
-          file: ./sylius/php/8.0/Dockerfile
-          tags: ajardin/sylius-php:8.0
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_80_blackfire:
-    name: "Sylius - Blackfire"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80_blackfire
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/8.0/blackfire/
-          file: ./sylius/php/8.0/blackfire/Dockerfile
-          tags: ajardin/sylius-php:8.0-blackfire
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_sylius_80_xdebug:
-    name: "Sylius - Xdebug"
-    runs-on: ubuntu-latest
-    needs: php_symfony_80_xdebug
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sylius/php/8.0/xdebug/
-          file: ./sylius/php/8.0/xdebug/Dockerfile
-          tags: ajardin/sylius-php:8.0-xdebug
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_80:
-    name: "Symfony - Default"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/8.0/
-          file: ./symfony/php/8.0/Dockerfile
-          tags: ajardin/symfony-php:8.0
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_80_blackfire:
-    name: "Symfony - Blackfire"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/8.0/blackfire/
-          file: ./symfony/php/8.0/blackfire/Dockerfile
-          tags: ajardin/symfony-php:8.0-blackfire
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-  php_symfony_80_xdebug:
-    name: "Symfony - Xdebug"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./symfony/php/8.0/xdebug/
-          file: ./symfony/php/8.0/xdebug/Dockerfile
-          tags: ajardin/symfony-php:8.0-xdebug
+          context: ./php/8.0/xdebug/
+          file: ./php/8.0/xdebug/Dockerfile
+          tags: ajardin/php:8.0-xdebug
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}

@@ -4,7 +4,7 @@
 ## ----------------------------------------------------------------------------
 ##
 
-all: common drupal magento2 sylius symfony ## Builds all Docker images
+all: common magento2 orocommerce php ## Builds all Docker images
 .PHONY: all
 
 common: ## Builds all "common" images
@@ -15,48 +15,27 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/synchro:latest common/synchro
 .PHONY: common
 
-drupal: ## Builds all "drupal" images
-	docker build --tag=ajardin/drupal-php:7.4 drupal/php/7.4
-	docker build --tag=ajardin/drupal-php:7.4-blackfire drupal/php/7.4/blackfire
-	docker build --tag=ajardin/drupal-php:7.4-xdebug drupal/php/7.4/xdebug
-	docker build --tag=ajardin/drupal-php:8.0 drupal/php/8.0
-	docker build --tag=ajardin/drupal-php:8.0-blackfire drupal/php/8.0/blackfire
-	docker build --tag=ajardin/drupal-php:8.0-xdebug drupal/php/8.0/xdebug
-.PHONY: drupal
-
 magento2: ## Builds all "magento2" images
 	docker build --tag=ajardin/magento2-elasticsearch:6 magento2/elasticsearch/6.x
 	docker build --tag=ajardin/magento2-elasticsearch:7 magento2/elasticsearch/7.x
 	docker build --tag=ajardin/magento2-nginx:latest magento2/nginx
-	docker build --tag=ajardin/magento2-php:7.4 magento2/php/7.4
-	docker build --tag=ajardin/magento2-php:7.4-blackfire magento2/php/7.4/blackfire
-	docker build --tag=ajardin/magento2-php:7.4-xdebug magento2/php/7.4/xdebug
 .PHONY: magento2
 
 orocommerce: ## Builds all "orocommerce" images
-	docker build --tag=ajardin/orocommerce-php:7.4 orocommerce/php/7.4
-	docker build --tag=ajardin/orocommerce-php:7.4-blackfire orocommerce/php/7.4/blackfire
-	docker build --tag=ajardin/orocommerce-php:7.4-xdebug orocommerce/php/7.4/xdebug
 	docker build --tag=ajardin/orocommerce-rabbitmq:3.8 orocommerce/rabbitmq/3.8
 .PHONY: orocommerce
 
-sylius: ## Builds all "sylius" images
-	docker build --tag=ajardin/sylius-php:7.4 sylius/php/7.4
-	docker build --tag=ajardin/sylius-php:7.4-blackfire sylius/php/7.4/blackfire
-	docker build --tag=ajardin/sylius-php:7.4-xdebug sylius/php/7.4/xdebug
-	docker build --tag=ajardin/sylius-php:8.0 sylius/php/8.0
-	docker build --tag=ajardin/sylius-php:8.0-blackfire sylius/php/8.0/blackfire
-	docker build --tag=ajardin/sylius-php:8.0-xdebug sylius/php/8.0/xdebug
-.PHONY: sylius
-
-symfony: ## Builds all "symfony" images
-	docker build --tag=ajardin/symfony-php:7.4 symfony/php/7.4
-	docker build --tag=ajardin/symfony-php:7.4-blackfire symfony/php/7.4/blackfire
-	docker build --tag=ajardin/symfony-php:7.4-xdebug symfony/php/7.4/xdebug
-	docker build --tag=ajardin/symfony-php:8.0 symfony/php/8.0
-	docker build --tag=ajardin/symfony-php:8.0-blackfire symfony/php/8.0/blackfire
-	docker build --tag=ajardin/symfony-php:8.0-xdebug symfony/php/8.0/xdebug
-.PHONY: symfony
+php: ## Builds all "php" images
+	docker build --tag=ajardin/php:7.3 php/7.3
+	docker build --tag=ajardin/php:7.3-blackfire php/7.3/blackfire
+	docker build --tag=ajardin/php:7.3-xdebug php/7.3/xdebug
+	docker build --tag=ajardin/php:7.4 php/7.4
+	docker build --tag=ajardin/php:7.4-blackfire php/7.4/blackfire
+	docker build --tag=ajardin/php:7.4-xdebug php/7.4/xdebug
+	docker build --tag=ajardin/php:8.0 php/8.0
+	docker build --tag=ajardin/php:8.0-blackfire php/8.0/blackfire
+	docker build --tag=ajardin/php:8.0-xdebug php/8.0/xdebug
+.PHONY: php
 
 help:
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) \
