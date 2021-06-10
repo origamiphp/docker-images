@@ -24,6 +24,7 @@ RUN \
         libxslt-dev \
         libwebp-dev \
         libzip-dev \
+        make \
         npm \
         openssh-client \
         patch \
