@@ -11,7 +11,6 @@ common: ## Builds all "common" images
 	docker build --tag=ajardin/blackfire-entrypoint:latest common/blackfire-entrypoint
 	docker build --tag=ajardin/humbug-box:latest common/humbug-box
 	docker build --tag=ajardin/nginx:latest common/nginx
-	docker build --tag=ajardin/proximis-proxy:latest common/proximis-proxy
 	docker build --tag=ajardin/synchro:latest common/synchro
 .PHONY: common
 

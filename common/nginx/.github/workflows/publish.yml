@@ -1,20 +1,15 @@
-name: "Proximis proxy image"
+name: "Publish to Docker Hub"
 
 on:
   push:
     branches: ["**"]
-    paths:
-      - ".github/workflows/common-proximis-proxy.yml"
-      - "common/proximis-proxy/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
 
 jobs:
-
-  proximis_proxy:
-    name: "Main"
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,8 +31,6 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./common/proximis-proxy/
-          file: ./common/proximis-proxy/Dockerfile
-          tags: ajardin/proximis-proxy:latest
+          tags: ajardin/nginx:latest
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}

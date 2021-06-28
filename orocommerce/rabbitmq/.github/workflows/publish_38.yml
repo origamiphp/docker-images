@@ -1,19 +1,18 @@
-name: "Blackfire entrypoint image"
+name: "Publish to Docker Hub"
 
 on:
   push:
     branches: ["**"]
     paths:
-      - ".github/workflows/common-blackfire-entrypoint.yml"
-      - "common/blackfire-entrypoint/**"
+      - ".github/workflows/publish_38.yml"
+      - "3.8/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
 
 jobs:
-  blackfire_entrypoint:
-    name: "Blackfire Entrypoint"
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,8 +34,7 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./common/blackfire-entrypoint/
-          file: ./common/blackfire-entrypoint/Dockerfile
-          tags: ajardin/blackfire-entrypoint:latest
+          context: ./3.8/
+          tags: ajardin/orocommerce-rabbitmq:3.8
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}

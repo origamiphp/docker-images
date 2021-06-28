@@ -1,0 +1,53 @@
+name: "Images Split"
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          -
+            local_path: "common/blackfire-entrypoint"
+            split_repository: "docker-blackfire-entrypoint"
+          -
+            local_path: "common/humbug-box"
+            split_repository: "docker-humbug-box"
+          -
+            local_path: "common/nginx"
+            split_repository: "docker-nginx"
+          -
+            local_path: "common/synchro"
+            split_repository: "docker-synchro"
+          -
+            local_path: "magento2/elasticsearch"
+            split_repository: "docker-magento2-elasticsearch"
+          -
+            local_path: "magento2/nginx"
+            split_repository: "docker-magento2-nginx"
+          -
+            local_path: "orocommerce/rabbitmq"
+            split_repository: "docker-orocommerce-rabbitmq"
+          -
+            local_path: "php"
+            split_repository: "docker-php"
+
+    steps:
+      -
+        uses: actions/checkout@v2
+      -
+        uses: "symplify/monorepo-split-github-action@main"
+        with:
+          package_directory: "${{ matrix.image.local_path }}"
+          repository_organization: "origamiphp"
+          repository_name: "${{ matrix.image.split_repository }}"
+          user_name: "Alexandre Jardin"
+          user_email: "info@ajardin.fr"

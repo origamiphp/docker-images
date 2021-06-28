@@ -12,5 +12,5 @@ RUN \
     wget "${repository}/releases/download/${version}/${release_asset}" -P "${RABBITMQ_HOME}/plugins" && \
     rabbitmq-plugins enable --offline rabbitmq_delayed_message_exchange
 
-ADD definitions.json /etc/rabbitmq/definitions.json
-ADD rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
+COPY definitions.json /etc/rabbitmq/definitions.json
+COPY rabbitmq.conf /etc/rabbitmq/rabbitmq.conf

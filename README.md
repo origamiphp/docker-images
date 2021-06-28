@@ -9,7 +9,7 @@
 
 ⚙ Build
 --------
-These images are automatically built when a commit is added to the `master` branch using
+These images are automatically built when a commit is added to the `main` branch using
 [GitHub Actions](/.github/workflows) and are publicly available in [Docker Hub][dockerhub]. We are currently not able
 to display the link between the public image, and the associated Dockerfile in Docker Hub because **multiple images are
 present in a single GitHub repository**. 

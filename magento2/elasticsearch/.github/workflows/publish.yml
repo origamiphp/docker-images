@@ -1,18 +1,15 @@
-name: "Elasticsearch for Magento 2 image"
+name: "Publish to Docker Hub"
 
 on:
   push:
     branches: ["**"]
-    paths:
-      - ".github/workflows/magento2-elasticsearch.yml"
-      - "magento2/elasticsearch/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
 
 jobs:
-  elasticsearch_6x:
+  publish_6x:
     name: "6.x"
     runs-on: ubuntu-latest
 
@@ -35,13 +32,12 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./magento2/elasticsearch/6.x/
-          file: ./magento2/elasticsearch/6.x/Dockerfile
+          context: ./6.x/
           tags: ajardin/magento2-elasticsearch:6
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
 
-  elasticsearch_7x:
+  publish_7x:
     name: "7.x"
     runs-on: ubuntu-latest
 
@@ -64,8 +60,7 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./magento2/elasticsearch/7.x/
-          file: ./magento2/elasticsearch/7.x/Dockerfile
+          context: ./7.x/
           tags: ajardin/magento2-elasticsearch:7
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}

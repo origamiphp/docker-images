@@ -1,19 +1,15 @@
-name: "RabbitMQ for OroCommerce images"
+name: "Publish to Docker Hub"
 
 on:
   push:
     branches: ["**"]
-    paths:
-      - ".github/workflows/orocommerce-rabbitmq.yml"
-      - "orocommerce/rabbitmq/**"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
 
 jobs:
-  rabbitmq_38:
-    name: "3.8"
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,8 +31,6 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./orocommerce/rabbitmq/3.8/
-          file: ./orocommerce/rabbitmq/3.8/Dockerfile
-          tags: ajardin/orocommerce-rabbitmq:3.8
+          tags: ajardin/humbug-box:latest
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
