@@ -16,8 +16,8 @@ jobs:
       matrix:
         image:
           -
-            local_path: "common/blackfire-entrypoint"
-            split_repository: "docker-blackfire-entrypoint"
+            local_path: "common/php-entrypoint"
+            split_repository: "docker-php-entrypoint"
           -
             local_path: "common/humbug-box"
             split_repository: "docker-humbug-box"
