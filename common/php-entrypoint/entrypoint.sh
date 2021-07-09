@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Generates the Blackfire configuration according to the environment variables if the PHP extension is present.
 if [[ $(php -r "echo (int) extension_loaded('blackfire');") -eq 1 ]]; then
   configuration="${PHP_INI_DIR}"/conf.d/docker-php-ext-blackfire.ini
   echo "extension=blackfire" > "${configuration}"
@@ -25,7 +26,12 @@ if [[ $(php -r "echo (int) extension_loaded('blackfire');") -eq 1 ]]; then
   fi
 fi
 
-# Ensure that the document root is writable by the "www-data" user
+# Downgrades the version of Composer if specifically requested.
+if [[ -n ${COMPOSER_DOWNGRADE:=} ]]; then
+  composer self-update --1
+fi
+
+# Ensures that the document root is writable by the "www-data" user.
 chown www-data:www-data /var/www/html
 
 exec "$@"
