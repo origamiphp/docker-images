@@ -36,6 +36,8 @@ jobs:
           tags: ajardin/magento2-elasticsearch:6
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/magento2-elasticsearch:6
+          cache-to: type=inline
 
   publish_7x:
     name: "7.x"
@@ -64,3 +66,5 @@ jobs:
           tags: ajardin/magento2-elasticsearch:7
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/magento2-elasticsearch:7
+          cache-to: type=inline

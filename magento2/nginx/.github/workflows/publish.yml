@@ -34,3 +34,5 @@ jobs:
           tags: ajardin/magento2-nginx:latest
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/magento2-nginx:latest
+          cache-to: type=inline
