@@ -38,6 +38,8 @@ jobs:
           tags: ajardin/php:8.0
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/php:8.0
+          cache-to: type=inline
 
       - name: "Build & Publish the Docker image (Blackfire)"
         uses: docker/build-push-action@v2
@@ -46,6 +48,8 @@ jobs:
           tags: ajardin/php:8.0-blackfire
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/php:8.0-blackfire
+          cache-to: type=inline
 
       - name: "Build & Publish the Docker image (Xdebug)"
         uses: docker/build-push-action@v2
@@ -54,3 +58,5 @@ jobs:
           tags: ajardin/php:8.0-xdebug
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/php:8.0-xdebug
+          cache-to: type=inline
