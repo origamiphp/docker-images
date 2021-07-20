@@ -4,14 +4,12 @@ set -euo pipefail
 # Generates the Blackfire configuration according to the environment variables if the PHP extension is present.
 if [[ $(php -r "echo (int) extension_loaded('blackfire');") -eq 1 ]]; then
   configuration="${PHP_INI_DIR}"/conf.d/docker-php-ext-blackfire.ini
-  echo "extension=blackfire" > "${configuration}"
-
-  if [[ -n ${BLACKFIRE_PORT:=} ]]; then
-    echo "blackfire.agent_socket=tcp://blackfire:${BLACKFIRE_PORT}" >> "${configuration}"
-  fi
-
-  echo "blackfire.agent_timeout=5" >> "${configuration}"
-  echo "blackfire.log_file=/var/log/blackfire.log" >> "${configuration}"
+  {
+    echo "extension=blackfire"
+    echo "blackfire.agent_socket=tcp://blackfire:8307"
+    echo "blackfire.agent_timeout=5"
+    echo "blackfire.log_file=/var/log/blackfire.log"
+  } > "${configuration}"
 
   if [[ -n ${BLACKFIRE_LOG_LEVEL:=} ]]; then
     echo "blackfire.log_level=${BLACKFIRE_LOG_LEVEL}" >> "${configuration}"
