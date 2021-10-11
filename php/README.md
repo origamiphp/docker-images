@@ -15,6 +15,9 @@ PHP images
 
 🐳 Supported tags
 -----------------
+* [`ajardin/php:8.1`](/php/8.1/Dockerfile)
+* ~~ajardin/php:8.1-blackfire~~ (PHP 8.1 is not yet supported by the editor)
+* [`ajardin/php:8.1-xdebug`](/php/8.1/xdebug/Dockerfile)
 * [`ajardin/php:8.0`](/php/8.0/Dockerfile)
 * [`ajardin/php:8.0-blackfire`](/php/8.0/blackfire/Dockerfile)
 * [`ajardin/php:8.0-xdebug`](/php/8.0/xdebug/Dockerfile)
