@@ -1,24 +1,22 @@
-Magento 2 Nginx image
-=====================
-![Nginx pulls](https://img.shields.io/docker/pulls/ajardin/nginx?style=for-the-badge)
+# Nginx images for Magento 2
+![Image pulls](https://img.shields.io/docker/pulls/ajardin/nginx)
 
-✨ Features
------------
+## ✨ Features
 * HTTPS support (with or without [mkcert][1])
 * [Default Magento 2 configuration][2]
 
-An image based on `ajardin/nginx` with a default Magento configuration.
+## 🐳 Supported tags
+* [![Image size (latest)](https://img.shields.io/docker/image-size/ajardin/nginx/latest?label=ajardin%2Fnginx%3Alatest)](/magento2/nginx/Dockerfile)
 
-🚀 Usage
---------
+## 🚀 Usage
 ```yaml
 services:
 # [...]
   nginx:
     image: ajardin/magento2-nginx:latest
-    env_file: ${PROJECT_LOCATION}/var/docker/.env
     ports:
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       # Project files
       - ${PROJECT_LOCATION}:/var/www/html:delegated

@@ -1,4 +1,4 @@
-name: "Publish to Docker Hub"
+name: "Publish to Docker Hub (7.3)"
 
 on:
   push:
