@@ -1,4 +1,4 @@
-name: "Publish to Docker Hub"
+name: "Publish to Docker Hub (7.4)"
 
 on:
   push:
@@ -40,7 +40,6 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}
           cache-from: type=registry,ref=ajardin/php:7.4
           cache-to: type=inline
-
 
       - name: "Build & Publish the Docker image (Blackfire)"
         uses: docker/build-push-action@v2

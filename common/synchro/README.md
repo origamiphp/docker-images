@@ -1,13 +1,13 @@
-Synchro image
-=============
-![Synchro pulls](https://img.shields.io/docker/pulls/ajardin/synchro?style=for-the-badge)
+# Image for Mutagen synchronization
+![Image pulls](https://img.shields.io/docker/pulls/ajardin/synchro)
 
-✨ Features
------------
+## ✨ Features
 An image based on `alpine:latest` with some configuration to work with Mutagen.
 
-🚀 Usage
---------
+## 🐳 Supported tags
+* [![Image size (latest)](https://img.shields.io/docker/image-size/ajardin/synchro/latest?label=ajardin%2Fsynchro%3Alatest)](/common/synchro/Dockerfile)
+
+## 🚀 Usage
 ```yaml
 services:
 # [...]

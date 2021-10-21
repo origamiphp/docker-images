@@ -1,21 +1,21 @@
-Nginx image
-===========
-![Nginx pulls](https://img.shields.io/docker/pulls/ajardin/nginx?style=for-the-badge)
+# Nginx image
+![Image pulls](https://img.shields.io/docker/pulls/ajardin/nginx)
 
-✨ Features
------------
+## ✨ Features
 An image based on `nginx:alpine` with HTTPS support and custom domains.
 
-🚀 Usage
---------
+## 🐳 Supported tags
+* [![Image size (latest)](https://img.shields.io/docker/image-size/ajardin/nginx/latest?label=ajardin%2Fnginx%3Alatest)](/common/nginx/Dockerfile)
+
+## 🚀 Usage
 ```yaml
 services:
 # [...]
   nginx:
     image: ajardin/nginx:latest
-    env_file: ${PROJECT_LOCATION}/var/docker/.env
     ports:
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       # Project files
       - ${PROJECT_LOCATION}:/var/www/html:delegated

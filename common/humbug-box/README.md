@@ -1,13 +1,13 @@
-Humbug Box image
-================
-![Humbug Box pulls](https://img.shields.io/docker/pulls/ajardin/humbug-box?style=for-the-badge)
+# Humbug Box image
+![Image pulls](https://img.shields.io/docker/pulls/ajardin/humbug-box)
 
-✨ Features
------------
+## ✨ Features
 An image based on `php:7.4-cli-alpine` with the [humbug/box][1] bundler.
 
-🚀 Usage
---------
+## 🐳 Supported tags
+* [![Image size (latest)](https://img.shields.io/docker/image-size/ajardin/humbug-box/latest?label=ajardin%2Fhumbug-box%3Alatest)](/common/humbug-box/Dockerfile)
+
+## 🚀 Usage
 ```bash
 # Prints the tool version.
 docker run --interactive --tty --volume="$(pwd):/app" ajardin/humbug-box
