@@ -2,7 +2,7 @@
 ![Image pulls](https://img.shields.io/docker/pulls/ajardin/humbug-box)
 
 ## ✨ Features
-An image based on `php:7.4-cli-alpine` with the [humbug/box][1] bundler.
+An image based on `php:8.0-cli-alpine` with the [humbug/box][1] bundler.
 
 ## 🐳 Supported tags
 * [![Image size (latest)](https://img.shields.io/docker/image-size/ajardin/humbug-box/latest?label=ajardin%2Fhumbug-box%3Alatest)](/common/humbug-box/Dockerfile)
