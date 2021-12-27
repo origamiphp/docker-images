@@ -41,15 +41,15 @@ jobs:
           cache-from: type=registry,ref=ajardin/php:8.1
           cache-to: type=inline
 
-#      - name: "Build & Publish the Docker image (Blackfire)"
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: ./8.1/blackfire/
-#          tags: ajardin/php:8.1-blackfire
-#          platforms: linux/amd64,linux/arm64
-#          push: ${{ github.ref == 'refs/heads/main' }}
-#          cache-from: type=registry,ref=ajardin/php:8.1-blackfire
-#          cache-to: type=inline
+      - name: "Build & Publish the Docker image (Blackfire)"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./8.1/blackfire/
+          tags: ajardin/php:8.1-blackfire
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=registry,ref=ajardin/php:8.1-blackfire
+          cache-to: type=inline
 
       - name: "Build & Publish the Docker image (Xdebug)"
         uses: docker/build-push-action@v2

@@ -13,7 +13,7 @@
 
 ## 🐳 Supported tags
 * [![Image size (8.1)](https://img.shields.io/docker/image-size/ajardin/php/8.1?label=ajardin%2Fphp%3A8.1)](/php/8.1/Dockerfile)
-* ~~ajardin/php:8.1-blackfire~~ (PHP 8.1 is not yet supported by the Blackfire)
+* [![Image size (8.1 with Blackfire)](https://img.shields.io/docker/image-size/ajardin/php/8.1-blackfire?label=ajardin%2Fphp%3A8.1-blackfire)](/php/8.1/blackfire/Dockerfile)
 * [![Image size (8.1 with Xdebug)](https://img.shields.io/docker/image-size/ajardin/php/8.1-xdebug?label=ajardin%2Fphp%3A8.1-xdebug)](/php/8.1/xdebug/Dockerfile)
 
 []()

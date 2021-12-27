@@ -1,4 +1,4 @@
-FROM php:8.1-rc-fpm-alpine
+FROM php:8.1-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Custom PHP 8.1 image for an application supported by Origami."
@@ -36,10 +36,7 @@ RUN \
         yarn && \
     apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
-		postgresql-dev
-
-# Configures the application requirements
-RUN \
+		postgresql-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install -j$(nproc) \
         bcmath \
