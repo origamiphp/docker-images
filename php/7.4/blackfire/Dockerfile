@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.title="Custom PHP 7.4 image with Blackfire for an
 LABEL org.opencontainers.image.description="https://github.com/ajardin/docker-images/blob/master/php/README.md"
 LABEL org.opencontainers.image.source="https://raw.githubusercontent.com/ajardin/docker-images/master/php/7.4/blackfire/Dockerfile"
 
-# Install the Blackfire PHP probe
+# Installs the Blackfire PHP probe
 RUN \
     version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") && \
     architecture=$(case $(uname -m) in i386 | i686 | x86) echo "i386" ;; x86_64 | amd64) echo "amd64" ;; aarch64 | arm64 | armv8) echo "arm64" ;; *) echo "amd64" ;; esac) && \

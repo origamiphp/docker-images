@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.title="Custom PHP 7.4 image for an application su
 LABEL org.opencontainers.image.description="https://github.com/ajardin/docker-images/blob/master/php/README.md"
 LABEL org.opencontainers.image.source="https://raw.githubusercontent.com/ajardin/docker-images/master/php/7.4/Dockerfile"
 
-# Install application requirements
+# Installs the application requirements
 RUN \
     apk update && \
     apk add --no-cache \
@@ -60,26 +60,26 @@ RUN \
     yarn global add grunt-cli gulp && \
     apk del .build-deps
 
-# Workaround because the iconv extension behavior
+# Workaround because of the iconv extension behavior
 RUN apk add gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
-# Install netz98/n98-magerun2
+# Installs the "netz98/n98-magerun2" package
 RUN \
     curl -sS https://files.magerun.net/n98-magerun2.phar --output /usr/local/bin/magerun2 && \
     chmod +x /usr/local/bin/magerun2
 
-# Assign a new UID/GID to avoid using a generated value
+# Assigns a new UID/GID to avoid using a generated value
 RUN \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
-# Install Composer globally
+# Installs Composer globally and configures it
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
 
-# Install custom entrypoint
+# Installs the custom entrypoint
 COPY --from=ajardin/php-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
 RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
 CMD ["php-fpm"]
