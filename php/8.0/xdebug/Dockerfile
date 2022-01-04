@@ -7,8 +7,5 @@ LABEL org.opencontainers.image.source="https://github.com/origamiphp/docker-imag
 
 # Installs the Xdebug extension
 RUN \
-    apk update && \
-    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
     yes "" | pecl install xdebug && \
-    docker-php-ext-enable xdebug && \
-    apk del .build-deps
+    docker-php-ext-enable xdebug
