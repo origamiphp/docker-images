@@ -3,7 +3,7 @@ FROM library/rabbitmq:3.8-management-alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="RabbitMQ 3.8 image for an OroCommerce application."
 LABEL org.opencontainers.image.description="https://oroinc.com/b2b-ecommerce/"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/orocommerce/rabbitmq"
+LABEL org.opencontainers.image.source="https://github.com/origamiphp/docker-images/tree/main/orocommerce/rabbitmq"
 
 RUN \
     repository="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange" && \
