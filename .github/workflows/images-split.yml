@@ -19,9 +19,6 @@ jobs:
             local_path: "common/php-entrypoint"
             split_repository: "docker-php-entrypoint"
           -
-            local_path: "common/humbug-box"
-            split_repository: "docker-humbug-box"
-          -
             local_path: "common/nginx"
             split_repository: "docker-nginx"
           -
