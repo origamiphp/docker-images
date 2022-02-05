@@ -3,7 +3,7 @@ FROM nginx:alpine
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Nginx image with HTTPS support."
 LABEL org.opencontainers.image.description="https://www.nginx.com/"
-LABEL org.opencontainers.image.source="https://github.com/ajardin/docker-images/tree/master/common/nginx"
+LABEL org.opencontainers.image.source="https://github.com/origamiphp/docker-images/tree/main/common/nginx"
 
 # Install Nginx requirements
 RUN \

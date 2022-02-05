@@ -2,8 +2,8 @@ FROM php:7.4-fpm-alpine
 
 LABEL org.opencontainers.image.authors="Alexandre Jardin <info@ajardin.fr>"
 LABEL org.opencontainers.image.title="Custom PHP 7.4 image for an application supported by Origami."
-LABEL org.opencontainers.image.description="https://github.com/ajardin/docker-images/blob/master/php/README.md"
-LABEL org.opencontainers.image.source="https://raw.githubusercontent.com/ajardin/docker-images/master/php/7.4/Dockerfile"
+LABEL org.opencontainers.image.description="https://github.com/origamiphp/docker-images/blob/main/php/README.md"
+LABEL org.opencontainers.image.source="https://github.com/origamiphp/docker-images/blob/main/php/7.4/Dockerfile"
 
 # Installs the application requirements
 RUN \
