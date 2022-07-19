@@ -25,7 +25,8 @@ RUN \
         libxml2-utils \
         libxslt-dev \
         libzip-dev \
-        ssmtp
+        ssmtp \
+        unzip
 
 # Installs the PHP extensions
 RUN \
