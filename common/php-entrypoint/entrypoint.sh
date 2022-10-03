@@ -32,4 +32,8 @@ fi
 # Ensures that the document root is writable by the "www-data" user.
 chown www-data:www-data /var/www/html
 
+# Ensures that the Composer global directory is writable by the "www-data" user.
+mkdir -p /.composer
+chown www-data:www-data /.composer
+
 exec "$@"

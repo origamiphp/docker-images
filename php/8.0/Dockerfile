@@ -76,6 +76,8 @@ RUN \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_MEMORY_LIMIT -1
+ENV COMPOSER_HOME /.composer
+ENV COMPOSER_CACHE_DIR /.composer/cache
 
 # Installs the custom entrypoint
 COPY --from=ajardin/php-entrypoint:latest /usr/local/bin/docker-custom-entrypoint /usr/local/bin/docker-custom-entrypoint
