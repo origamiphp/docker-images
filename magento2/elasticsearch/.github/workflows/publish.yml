@@ -9,40 +9,21 @@ on:
     inputs:
 
 jobs:
-  publish_6x:
-    name: "6.x"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Prepare the build context"
-        uses: actions/checkout@v2
-
-      - name: "Set up QEMU"
-        uses: docker/setup-qemu-action@v1
-
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Log in to DockerHub"
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: "Build & Publish the Docker image"
-        uses: docker/build-push-action@v2
-        with:
-          context: ./6.x/
-          tags: ajardin/magento2-elasticsearch:6
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.ref == 'refs/heads/main' }}
-          cache-from: type=registry,ref=ajardin/magento2-elasticsearch:6
-          cache-to: type=inline
-
   publish_7x:
     name: "7.x"
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        elasticsearch-version:
+          - "7.7"
+          - "7.6"
+          - "7.9"
+          - "7.16"
+          - "7.17"
+
     steps:
       - name: "Prepare the build context"
         uses: actions/checkout@v2
@@ -62,9 +43,9 @@ jobs:
       - name: "Build & Publish the Docker image"
         uses: docker/build-push-action@v2
         with:
-          context: ./7.x/
-          tags: ajardin/magento2-elasticsearch:7
+          context: ./${{ matrix.elasticsearch-version }}/
+          tags: ajardin/magento2-elasticsearch:${{ matrix.elasticsearch-version }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
-          cache-from: type=registry,ref=ajardin/magento2-elasticsearch:7
+          cache-from: type=registry,ref=ajardin/magento2-elasticsearch:${{ matrix.elasticsearch-version }}
           cache-to: type=inline
