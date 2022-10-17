@@ -41,7 +41,7 @@ jobs:
       -
         uses: actions/checkout@v2
       -
-        uses: "symplify/monorepo-split-github-action@main"
+        uses: "symplify/monorepo-split-github-action@2.2"
         with:
           package_directory: "${{ matrix.image.local_path }}"
           repository_organization: "origamiphp"
