@@ -25,6 +25,7 @@ RUN \
         libxml2-utils \
         libxslt-dev \
         libzip-dev \
+        ssh-client \
         ssmtp \
         unzip
 
