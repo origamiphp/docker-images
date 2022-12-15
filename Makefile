@@ -36,6 +36,9 @@ php: ## Builds all "php" images
 	docker build --tag=ajardin/php:8.1 php/8.1
 	docker build --tag=ajardin/php:8.1-blackfire php/8.1/blackfire
 	docker build --tag=ajardin/php:8.1-xdebug php/8.1/xdebug
+	docker build --tag=ajardin/php:8.2 php/8.2
+	docker build --tag=ajardin/php:8.2-blackfire php/8.2/blackfire
+	docker build --tag=ajardin/php:8.2-xdebug php/8.2/xdebug
 .PHONY: php
 
 help:

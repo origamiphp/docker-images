@@ -12,6 +12,12 @@
 * [Blackfire extension][blackfire] or [Xdebug extension][xdebug]
 
 ## 🐳 Supported tags
+* [![Image size (8.2)](https://img.shields.io/docker/image-size/ajardin/php/8.2?label=ajardin%2Fphp%3A8.2)](/php/8.2/Dockerfile)
+* [![Image size (8.2 with Blackfire)](https://img.shields.io/docker/image-size/ajardin/php/8.2-blackfire?label=ajardin%2Fphp%3A8.2-blackfire)](/php/8.2/blackfire/Dockerfile)
+* [![Image size (8.2 with Xdebug)](https://img.shields.io/docker/image-size/ajardin/php/8.2-xdebug?label=ajardin%2Fphp%3A8.2-xdebug)](/php/8.2/xdebug/Dockerfile)
+
+[]()
+
 * [![Image size (8.1)](https://img.shields.io/docker/image-size/ajardin/php/8.1?label=ajardin%2Fphp%3A8.1)](/php/8.1/Dockerfile)
 * [![Image size (8.1 with Blackfire)](https://img.shields.io/docker/image-size/ajardin/php/8.1-blackfire?label=ajardin%2Fphp%3A8.1-blackfire)](/php/8.1/blackfire/Dockerfile)
 * [![Image size (8.1 with Xdebug)](https://img.shields.io/docker/image-size/ajardin/php/8.1-xdebug?label=ajardin%2Fphp%3A8.1-xdebug)](/php/8.1/xdebug/Dockerfile)
@@ -36,14 +42,14 @@
 
 ## 🚀 Usage
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/php:8.0 sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/php:8.2 sh
 ```
 
 ```yaml
 services:
 # [...]
   php:
-    image: ajardin/php:8.0
+    image: ajardin/php:8.2
     environment:
       - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
     volumes:
