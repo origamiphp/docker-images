@@ -14,8 +14,8 @@ common: ## Builds all "common" images
 .PHONY: common
 
 magento2: ## Builds all "magento2" images
-	docker build --tag=ajardin/magento2-elasticsearch:6 magento2/elasticsearch/6.x
 	docker build --tag=ajardin/magento2-elasticsearch:7 magento2/elasticsearch/7.x
+	docker build --tag=ajardin/magento2-elasticsearch:8 magento2/elasticsearch/8.x
 	docker build --tag=ajardin/magento2-nginx:latest magento2/nginx
 .PHONY: magento2
 
