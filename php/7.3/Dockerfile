@@ -72,6 +72,9 @@ RUN \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
+# Give www-data permissions to its home folder
+RUN chown www-data:www-data /var/www
+
 # Installs the "netz98/n98-magerun2" package
 RUN \
     curl -sS https://files.magerun.net/n98-magerun2.phar --output /usr/local/bin/magerun2 && \
