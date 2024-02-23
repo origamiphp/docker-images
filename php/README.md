@@ -15,6 +15,12 @@
 
 > :information_source: Only images of officially supported PHP versions are regularly updated.
 
+* [![Image size (8.3)](https://img.shields.io/docker/image-size/ajardin/php/8.3?label=ajardin%2Fphp%3A8.3)](/php/8.3/Dockerfile)
+* [![Image size (8.3 with Blackfire)](https://img.shields.io/docker/image-size/ajardin/php/8.3-blackfire?label=ajardin%2Fphp%3A8.3-blackfire)](/php/8.3/blackfire/Dockerfile)
+* [![Image size (8.3 with Xdebug)](https://img.shields.io/docker/image-size/ajardin/php/8.3-xdebug?label=ajardin%2Fphp%3A8.3-xdebug)](/php/8.3/xdebug/Dockerfile)
+
+[]()
+
 * [![Image size (8.2)](https://img.shields.io/docker/image-size/ajardin/php/8.2?label=ajardin%2Fphp%3A8.2)](/php/8.2/Dockerfile)
 * [![Image size (8.2 with Blackfire)](https://img.shields.io/docker/image-size/ajardin/php/8.2-blackfire?label=ajardin%2Fphp%3A8.2-blackfire)](/php/8.2/blackfire/Dockerfile)
 * [![Image size (8.2 with Xdebug)](https://img.shields.io/docker/image-size/ajardin/php/8.2-xdebug?label=ajardin%2Fphp%3A8.2-xdebug)](/php/8.2/xdebug/Dockerfile)
@@ -45,14 +51,14 @@
 
 ## 🚀 Usage
 ```bash
-docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/php:8.2 sh
+docker run --interactive --tty --volume=$(pwd):/var/www/html ajardin/php:8.3 sh
 ```
 
 ```yaml
 services:
 # [...]
   php:
-    image: ajardin/php:8.2
+    image: ajardin/php:8.3
     environment:
       - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
     volumes:
